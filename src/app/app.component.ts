@@ -21,11 +21,6 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Budget Manager',
-      url: '/budget-manager-list',
-      icon: 'list'
-    },
-    {
       title: 'Guests',
       url: '/rsvp-list',
       icon: 'list'
