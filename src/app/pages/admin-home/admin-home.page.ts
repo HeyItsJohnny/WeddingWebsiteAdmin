@@ -179,6 +179,6 @@ export class AdminHomePage {
      };
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart(document.getElementById('act_cost_wedding_budget_percent_div'));
+    var chart = new google.visualization.PieChart(document.getElementById('total_guests_div'));
    }
 }
