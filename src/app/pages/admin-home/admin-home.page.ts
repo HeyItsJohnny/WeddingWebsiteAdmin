@@ -50,10 +50,10 @@ export class AdminHomePage {
   }
 
   getBudgetData(OverallBudget: number) {
-    this.reloadActualCostChart(OverallBudget);
+    //this.reloadActualCostChart(OverallBudget);
   }
 
-  reloadActualCostChart(OverallBudget: number) {
+  /*reloadActualCostChart(OverallBudget: number) {
     // Create the data table.
     var estdata = new google.visualization.DataTable();
     estdata.addColumn('string', 'Category');
@@ -180,5 +180,5 @@ export class AdminHomePage {
 
     // Instantiate and draw our chart, passing in some options.
     var chart = new google.visualization.PieChart(document.getElementById('total_guests_div'));
-   }
+   }*/
 }
