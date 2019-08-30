@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/members/budgetList"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Budget</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-list lines="full">
+          <h1>Categories</h1>
+          <ion-item>
+            <ion-label stacked class="bold-label">Category:</ion-label>
+            <ion-input required type="text" [(ngModel)]="budget.Category" disabled="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked class="bold-label">Subcategory:</ion-label>
+            <ion-input required type="text" [(ngModel)]="budget.SubCategory" disabled="true"></ion-input>
+          </ion-item>
+          <h1>Details</h1>
+          <ion-item>
+            <ion-label stacked class="bold-label">Name:</ion-label>
+            <ion-input required type="text" [(ngModel)]="budget.BudgetName"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked class="bold-label">Description:</ion-label>
+            <ion-input required type="text" [(ngModel)]="budget.BudgetDescription"></ion-input>
+          </ion-item>
+          <h1>Suggested</h1>
+          <ion-item>
+            <ion-label stacked class="bold-label">Suggested %:</ion-label>
+            <ion-input required type="number" [(ngModel)]="budget.SuggestedPercent"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked class="bold-label">Suggested Amount:</ion-label>
+            <ion-input required type="number" [(ngModel)]="budget.SuggestedAmount" disabled="true"></ion-input>
+          </ion-item>
+          <h1>Actual</h1>
+          <ion-item>
+            <ion-label stacked class="bold-label">Actual Cost:</ion-label>
+            <ion-input required type="number" [(ngModel)]="budget.ActualCost"></ion-input>
+          </ion-item>
+          <h1>Other</h1>
+          <ion-item>
+            <ion-label stacked class="bold-label">Comments:</ion-label>
+            <ion-input required type="text" [(ngModel)]="budget.Comments"></ion-input>
+          </ion-item>
+      </ion-list>
+      <ion-button expand="full" (click)="saveBudget()">Save</ion-button>
+      <ion-button expand="full" (click)="deleteBudget()">Delete</ion-button>
+  </ion-content>
+  

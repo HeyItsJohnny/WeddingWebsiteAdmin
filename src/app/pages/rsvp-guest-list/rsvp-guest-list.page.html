@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Guests</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ng-container *ngIf="!rsvpGuests|| rsvpGuests.length == 0">
+      <div *ngFor="let n of [0,1,2]" padding>
+        <ion-skeleton-text></ion-skeleton-text>
+        <p>
+          <ion-skeleton-text class="fake-skeleton"></ion-skeleton-text>
+        </p>
+      </div>
+    </ng-container>
+  
+    <ion-item-sliding *ngFor="let item of rsvpGuests">
+      <ion-item lines="inset" button (click)="viewDetails(item)">
+        <ion-label>
+          {{ item.payload.doc.data().Name }}
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/members/guestDetails" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

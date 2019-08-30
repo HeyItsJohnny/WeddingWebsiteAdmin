@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Guest</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label stacked class="bold-label">Guest Name:</ion-label>
+      <ion-input required type="text" [(ngModel)]="rsvpGuest.Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked class="bold-label">Dinner Choice:</ion-label>
+      <ion-input required type="text" [(ngModel)]="rsvpGuest.DinnerChoiceText" disabled="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked class="bold-label">Dietary Restrictions:</ion-label>
+      <ion-input required type="text" [(ngModel)]="rsvpGuest.DinnerNotes"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" (click)="saveRsvpGuest()">Save</ion-button>
+  <ion-button expand="full" (click)="deleteGuest()">Delete</ion-button>
+  <ion-button expand="full" (click)="goToDinnerSelection()">Select Dinner</ion-button>
+</ion-content>

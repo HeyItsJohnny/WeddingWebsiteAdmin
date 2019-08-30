@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/members/dinnerList"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Dinner Setup</ion-title>
+    </ion-toolbar>
+</ion-header>
+  
+  <ion-content padding>
+      <ion-list lines="full">
+          <h1>Dinner Details</h1>
+          <ion-item>
+              <ion-label stacked class="bold-label">Dinner:</ion-label>
+              <ion-input required type="text" [(ngModel)]="dinner.Name"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label stacked class="bold-label">Description:</ion-label>
+              <ion-input required type="text" [(ngModel)]="dinner.Description"></ion-input>
+          </ion-item>
+      </ion-list>
+      <ion-button expand="full" (click)="saveDinner()">Save</ion-button>
+      <ion-button expand="full" (click)="deleteDinner()">Delete</ion-button>
+  </ion-content>
+  

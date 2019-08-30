@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/members/rsvpList"></ion-back-button>
+    </ion-buttons>
+    <ion-title>RSVP Group</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <h1>Group Details</h1>
+        <ion-item>
+            <ion-label stacked class="bold-label">Name:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.Name"></ion-input>
+        </ion-item>   
+        <ion-item>
+            <ion-label stacked class="bold-label">Special Title:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.SpecialTitle"></ion-input>
+        </ion-item>      
+        <ion-item>
+            <ion-label stacked class="bold-label">Number of Guests:</ion-label>
+            <ion-input required type="number" [(ngModel)]="rsvp.NumberOfGuests" ></ion-input>
+        </ion-item>
+        <h1>Communication</h1>
+        <ion-item>
+            <ion-label stacked class="bold-label">Email:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.Email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked class="bold-label">Phone Number:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.PhoneNo"></ion-input>
+        </ion-item>
+        <h1>RSVP Details</h1>
+        <ion-item>
+            <ion-label stacked class="bold-label">RSVPed:</ion-label>
+            <ion-checkbox [(ngModel)]="rsvp.isGoing" ></ion-checkbox>
+        </ion-item> 
+        <ion-item>
+            <ion-label stacked class="bold-label">Notes to the Couple:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.CoupleNotes" disabled="true"></ion-input>
+        </ion-item>
+        <h1>Address</h1>
+        <ion-item>
+            <ion-label stacked class="bold-label">Address 1:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.Address1"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked class="bold-label">Address 2:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.Address2"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked class="bold-label">City:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.AddressCity"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked class="bold-label">State:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.AddressState"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked class="bold-label">Zip Code:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.AddressPostCode"></ion-input>
+        </ion-item>                
+        <h1>Post Wedding Details</h1>        
+        <ion-item>
+            <ion-label stacked class="bold-label">Thank You Letter Sent:</ion-label>
+            <ion-checkbox [(ngModel)]="rsvp.ThankYouLetterSent" ></ion-checkbox>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="full" (click)="saveRsvp()">Save</ion-button>
+      <ion-button expand="full" (click)="deleteRsvp()">Delete</ion-button>
+      <ion-button expand="full" (click)="goToGroupMembers()">Group Members</ion-button>
+</ion-content>

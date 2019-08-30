@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/members/home"></ion-back-button>
+        </ion-buttons>
+      <ion-title>Wedding Day</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-list lines="full"> 
+          <h1>Wedding Details</h1>
+          <ion-item>
+              <ion-label stacked class="bold-label">Your Name:</ion-label>
+              <ion-input required type="text" [(ngModel)]="weddingDay.YourName"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label stacked class="bold-label">Fiance Name:</ion-label>
+              <ion-input required type="text" [(ngModel)]="weddingDay.FianceName"></ion-input>
+          </ion-item>      
+          <ion-item>
+              <ion-label stacked class="bold-label">Est. Number of Guests:</ion-label>
+              <ion-input required type="number" [(ngModel)]="weddingDay.EstimatedNoOfGuests"></ion-input>
+          </ion-item>   
+          <ion-item>
+              <ion-label stacked class="bold-label">Estimated Budget:</ion-label>
+              <ion-input required type="number" [(ngModel)]="weddingDay.BudgetEstimate"></ion-input>
+          </ion-item> 
+          <ion-item>
+              <ion-label stacked class="bold-label">Wedding Invites Sent Out:</ion-label>
+              <ion-checkbox [(ngModel)]="weddingDay.WeddingInvitesSentOut" disabled="true"></ion-checkbox>
+          </ion-item>  
+          <br>
+          <h1>Wedding Date & Time</h1>
+          <ion-item>
+              <ion-label stacked class="bold-label">Wedding Date:</ion-label>
+              <ion-input required type="date" [(ngModel)]="weddingDay.WeddingDate"></ion-input>
+          </ion-item> 
+          <ion-item>
+              <ion-label stacked class="bold-label">Reception Time:</ion-label>
+              <ion-input required type="time" [(ngModel)]="weddingDay.ReceptionTime"></ion-input>
+          </ion-item> 
+          <ion-item>
+              <ion-label stacked class="bold-label">Cocktail Time:</ion-label>
+              <ion-input required type="time" [(ngModel)]="weddingDay.CocktailTime"></ion-input>
+          </ion-item> 
+          <ion-item>
+              <ion-label stacked class="bold-label">Dinner Time:</ion-label>
+              <ion-input required type="time" [(ngModel)]="weddingDay.DinnerTime"></ion-input>
+          </ion-item> 
+      </ion-list>
+      <ion-button expand="full" (click)="saveWeddingDay()">Save</ion-button>
+  </ion-content>
+  
