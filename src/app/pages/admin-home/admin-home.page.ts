@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BudgetManagerService } from 'src/app/services/budget-manager.service';
 import { MenuController } from '@ionic/angular';
 import { WeddingDayDetails, WeddingDayDetailsService } from 'src/app/services/wedding-day-details.service';
 
@@ -22,8 +21,12 @@ export class AdminHomePage {
     ReceptionTime: null,
     DinnerTime: null,
     CocktailTime: null,
-    WeddingInvitesSentOut: false,
-    UpdatedAt: 0
+    VenueName: '',
+    VenueAddress1: '',
+    VenueAddress2: '',
+    VenueCity: '',
+    VenueState: '',
+    VenueZip: ''
   };
   weddingDayId = null;
 
@@ -31,7 +34,6 @@ export class AdminHomePage {
   TotalOverUnderBudget: string;
 
   constructor(
-    private budgetService: BudgetManagerService,
     private weddingDayDetailsService: WeddingDayDetailsService,
     public menuController: MenuController) { }
 
