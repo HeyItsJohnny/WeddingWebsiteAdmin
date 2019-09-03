@@ -20,8 +20,12 @@ export class WeddingDayDetailsPage implements OnInit {
     ReceptionTime: null,
     DinnerTime: null,
     CocktailTime: null,
-    WeddingInvitesSentOut: false,
-    UpdatedAt: 0
+    VenueName: '',
+    VenueAddress1: '',
+    VenueAddress2: '',
+    VenueCity: '',
+    VenueState: '',
+    VenueZip: ''
   };
 
   weddingDayId = null;

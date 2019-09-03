@@ -31,7 +31,33 @@
               <ion-checkbox [(ngModel)]="weddingDay.WeddingInvitesSentOut" disabled="true"></ion-checkbox>
           </ion-item>  
           <br>
-          <h1>Wedding Date & Time</h1>
+          <h1>Venue Details</h1>
+          <ion-item>
+            <ion-label stacked class="bold-label">Name:</ion-label>
+            <ion-input required type="text" [(ngModel)]="weddingDay.VenueName"></ion-input>
+          </ion-item> 
+          <ion-item>
+            <ion-label stacked class="bold-label">Address:</ion-label>
+            <ion-input required type="text" [(ngModel)]="weddingDay.VenueAddress1"></ion-input>
+          </ion-item> 
+          <ion-item>
+            <ion-label stacked class="bold-label">Address 2:</ion-label>
+            <ion-input required type="text" [(ngModel)]="weddingDay.VenueAddress2"></ion-input>
+          </ion-item> 
+          <ion-item>
+            <ion-label stacked class="bold-label">City:</ion-label>
+            <ion-input required type="text" [(ngModel)]="weddingDay.VenueCity"></ion-input>
+          </ion-item> 
+          <ion-item>
+            <ion-label stacked class="bold-label">State:</ion-label>
+            <ion-input required type="text" [(ngModel)]="weddingDay.VenueState"></ion-input>
+          </ion-item> 
+          <ion-item>
+            <ion-label stacked class="bold-label">Zip Code:</ion-label>
+            <ion-input required type="text" [(ngModel)]="weddingDay.VenueZip"></ion-input>
+          </ion-item> 
+          <br>
+          <h1>Dates & Times</h1>
           <ion-item>
               <ion-label stacked class="bold-label">Wedding Date:</ion-label>
               <ion-input required type="date" [(ngModel)]="weddingDay.WeddingDate"></ion-input>

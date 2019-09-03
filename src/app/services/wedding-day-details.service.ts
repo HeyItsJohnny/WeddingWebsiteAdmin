@@ -16,8 +16,12 @@ export interface WeddingDayDetails {
   ReceptionTime: Time;
   DinnerTime: Time;
   CocktailTime: Time;
-  WeddingInvitesSentOut: boolean;
-  UpdatedAt: number;
+  VenueName: string;
+  VenueAddress1: string;
+  VenueAddress2: string;
+  VenueCity: string;
+  VenueState: string;
+  VenueZip: string;
 }
 
 @Injectable({
