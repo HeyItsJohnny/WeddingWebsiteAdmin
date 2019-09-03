@@ -15,9 +15,6 @@ const routes: Routes = [
   { path: 'rsvp-guest-details', loadChildren: './pages/rsvp-guest-details/rsvp-guest-details.module#RsvpGuestDetailsPageModule' },
   { path: 'rsvp-guest-details/:id', loadChildren: './pages/rsvp-guest-details/rsvp-guest-details.module#RsvpGuestDetailsPageModule' },
   { path: 'start-new-rsvp', loadChildren: './pages/start-new-rsvp/start-new-rsvp.module#StartNewRsvpPageModule' },
-  { path: 'budget-manager-list', loadChildren: './pages/budget-manager-list/budget-manager-list.module#BudgetManagerListPageModule' },
-  { path: 'budget-manager-details', loadChildren: './pages/budget-manager-details/budget-manager-details.module#BudgetManagerDetailsPageModule' },
-  { path: 'budget-manager-details/:id', loadChildren: './pages/budget-manager-details/budget-manager-details.module#BudgetManagerDetailsPageModule' },
   { path: 'admin-home', loadChildren: './pages/admin-home/admin-home.module#AdminHomePageModule' }
 ];
 
