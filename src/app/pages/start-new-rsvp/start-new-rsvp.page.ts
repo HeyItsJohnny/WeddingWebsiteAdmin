@@ -102,51 +102,24 @@ export class StartNewRsvpPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.rsvpService.updateRsvpAttendance(DocSetID,true);
-            this.rsvpService.updateRsvpCoupleNote(DocSetID,"");
-            this.enterGuestInformation(DocSetID, NumOfGuests);
+            this.rsvpService.updateRsvpAttendance(DocSetID,"Going");
+            this.enterAllGuests(NumOfGuests);
+            //Add to Going Table
           }
         }, {
           text: 'No',
           handler: () => {
-            this.rsvpService.updateRsvpAttendance(DocSetID,false);
+            this.rsvpService.updateRsvpAttendance(DocSetID,"Not Going");
+            //Add to Not Going Table
           }
         }
       ]
     }).then(alert => alert.present())
   }
 
-  enterGuestInformation(DocSetID: string, NumOfGuests: number) {
-    this.alertController.create({
-      header: "Please enter Guest Information",
-      inputs: [
-        {
-          name: 'guestEmail',
-          type: 'text',
-          placeholder: 'Email'
-        },
-        {
-          name: 'guestPhoneNo',
-          type: 'text',
-          placeholder: 'Phone No.'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Ok',
-          handler: (data: any) => {
-            this.rsvpService.updateRsvpInformation(DocSetID,data.guestEmail,data.guestPhoneNo);
-            this.enterAllGuests(DocSetID, NumOfGuests);
-          }
-        }
-      ]
-    }).then(alert => alert.present())
-  }
-
-  enterAllGuests(DocSetID: string, NumOfGuests: number) {
+  enterAllGuests(NumOfGuests: number) {
     var options = {
       header: "List all attendees",
-      subHeader: "Max Number of attendees: " + NumOfGuests,
       message: "Please include yourself below",
       inputs: [],
       buttons: [

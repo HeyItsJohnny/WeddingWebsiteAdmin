@@ -65,9 +65,9 @@ export class RsvpService {
     return this.db.collection<Rsvp>('Rsvps', ref => ref.where('Name', '==', NameToSearch).limit(1)).snapshotChanges();
   }
 
-  updateRsvpAttendance(id: string, isGoingBool: boolean){
+  updateRsvpAttendance(id: string, attendingOption: string){
     let rsvpsCollection = this.db.collection('Rsvps');
-    rsvpsCollection.doc(id).update({"isGoing": isGoingBool});
+    rsvpsCollection.doc(id).update({"AttendingOption": attendingOption});
   }
 
   updateRsvpInformation(id: string, rsvpEmail: string, rsvpPhoneNo: string){
