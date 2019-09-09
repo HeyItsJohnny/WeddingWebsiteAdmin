@@ -49,11 +49,6 @@
             <ion-label stacked class="bold-label">Zip Code:</ion-label>
             <ion-input required type="text" [(ngModel)]="rsvp.AddressPostCode"></ion-input>
         </ion-item>                
-        <h1>Post Wedding Details</h1>        
-        <ion-item>
-            <ion-label stacked class="bold-label">Thank You Letter Sent:</ion-label>
-            <ion-checkbox [(ngModel)]="rsvp.ThankYouLetterSent" ></ion-checkbox>
-        </ion-item>
       </ion-list>
       <ion-button expand="full" (click)="saveRsvp()">Save</ion-button>
       <ion-button expand="full" (click)="deleteRsvp()">Delete</ion-button>
