@@ -9,7 +9,7 @@
     <ion-label>Search Guests</ion-label>
     <ion-select value="category" [(ngModel)]="searchCategory">
       <ion-select-option value="name">Name</ion-select-option>
-      <ion-select-option value="title">Special Title</ion-select-option>
+      <ion-select-option value="email">E-Mail</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>

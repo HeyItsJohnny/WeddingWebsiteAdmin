@@ -97,10 +97,10 @@ export class RsvpService {
     })
   }
 
-  searchRSVPSpecialTitle(searchValue){
+  searchRSVPEmail(searchValue){
     return new Promise<any>((resolve, reject) => {
-      this.db.collection('Rsvps', ref => ref.where('SearchSpecialTitle', '>=', searchValue)
-      .where('SearchSpecialTitle', '<=', searchValue + '\uf8ff'))
+      this.db.collection('Rsvps', ref => ref.where('SearchEmail', '>=', searchValue)
+      .where('SearchEmail', '<=', searchValue + '\uf8ff'))
       .snapshotChanges()
       .subscribe(snapshots => {
         resolve(snapshots);

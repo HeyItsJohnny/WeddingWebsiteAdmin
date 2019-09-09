@@ -61,8 +61,8 @@ export class RsvpListPage {
         this.rsvpService.searchRSVPName(valueTmp).then(res => {
           this.rsvps = res;
         })
-      } else if (this.searchCategory == 'title') {
-        this.rsvpService.searchRSVPSpecialTitle(valueTmp).then(res => {
+      } else if (this.searchCategory == 'email') {
+        this.rsvpService.searchRSVPEmail(valueTmp).then(res => {
           this.rsvps = res;
         })
       }
