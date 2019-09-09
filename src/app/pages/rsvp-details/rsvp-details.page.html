@@ -27,8 +27,7 @@
             <ion-label stacked class="bold-label">Phone Number:</ion-label>
             <ion-input required type="text" [(ngModel)]="rsvp.PhoneNo"></ion-input>
         </ion-item>
-        <h1>RSVP Details</h1>
-        <h1>Address</h1>
+        <h1>Guest Address</h1>
         <ion-item>
             <ion-label stacked class="bold-label">Address 1:</ion-label>
             <ion-input required type="text" [(ngModel)]="rsvp.Address1"></ion-input>
@@ -48,7 +47,12 @@
         <ion-item>
             <ion-label stacked class="bold-label">Zip Code:</ion-label>
             <ion-input required type="text" [(ngModel)]="rsvp.AddressPostCode"></ion-input>
-        </ion-item>                
+        </ion-item>    
+        <h1>Wedding Details</h1>          
+        <ion-item>
+            <ion-label stacked class="bold-label">Attending:</ion-label>
+            <ion-input required type="text" [(ngModel)]="rsvp.AttendingOption"></ion-input>
+        </ion-item>  
       </ion-list>
       <ion-button expand="full" (click)="saveRsvp()">Save</ion-button>
       <ion-button expand="full" (click)="deleteRsvp()">Delete</ion-button>
