@@ -48,7 +48,7 @@ export class RsvpService {
   updateRsvp(rsvp: Rsvp, id: string) {
     var tmp = rsvp;
     tmp.SearchName = rsvp.Name.toLowerCase();
-    tmp.SearchEmail= rsvp.SearchEmail.toLowerCase();
+    tmp.SearchEmail= rsvp.Email.toLowerCase();
     let rsvpsCollection = this.db.collection('Rsvps');
     return rsvpsCollection.doc(id).update(tmp);
   }
@@ -56,7 +56,7 @@ export class RsvpService {
   addRsvp(rsvp: Rsvp) {
     var tmp = rsvp;
     tmp.SearchName = rsvp.Name.toLowerCase();
-    tmp.SearchEmail = rsvp.SearchEmail.toLowerCase();
+    tmp.SearchEmail = rsvp.Email.toLowerCase();
     let rsvpsCollection = this.db.collection('Rsvps');
     return rsvpsCollection.add(tmp);
   }
