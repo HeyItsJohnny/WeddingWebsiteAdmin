@@ -14,22 +14,17 @@ export class RsvpDetailsPage implements OnInit {
 
   rsvp: Rsvp = {
     Name: '',
-    SpecialTitle: '',
-    SearchName: '',
-    SearchSpecialTitle: '',
     Email: '',
+    SearchName: '',
+    SearchEmail: '',
     PhoneNo: '',
     Address1: '',
     Address2: '',
     AddressCity: '',
     AddressState: '',
     AddressPostCode: '',
-    CoupleNotes: '',
-    UpdatedAt: 0,
-    isGoing: false,
-    ThankYouLetterSent: false,
     NumberOfGuests: 0,
-    CreatedAt: 0
+    AttendingOption: ''
   };
 
   rsvpId = null;

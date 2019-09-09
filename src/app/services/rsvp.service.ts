@@ -7,10 +7,9 @@ import { AngularFireAuth } from "angularfire2/auth";
 export interface Rsvp {
   id?: string;
   Name: string;
-  SpecialTitle: string;
-  SearchName: string;
-  SearchSpecialTitle: string;
   Email: string;
+  SearchName: string;
+  SearchEmail: string;
   PhoneNo: string;
   Address1: string;
   Address2: string;
@@ -18,11 +17,7 @@ export interface Rsvp {
   AddressState: string;
   AddressPostCode: string;
   NumberOfGuests: number;
-  CoupleNotes: string;
-  ThankYouLetterSent: boolean
-  isGoing: Boolean;
-  UpdatedAt: number;
-  CreatedAt: number;
+  AttendingOption: string;
 }
 
 @Injectable({
@@ -53,7 +48,7 @@ export class RsvpService {
   updateRsvp(rsvp: Rsvp, id: string) {
     var tmp = rsvp;
     tmp.SearchName = rsvp.Name.toLowerCase();
-    tmp.SearchSpecialTitle = rsvp.SpecialTitle.toLowerCase();
+    tmp.SearchEmail= rsvp.SearchEmail.toLowerCase();
     let rsvpsCollection = this.db.collection('Rsvps');
     return rsvpsCollection.doc(id).update(tmp);
   }
@@ -61,7 +56,7 @@ export class RsvpService {
   addRsvp(rsvp: Rsvp) {
     var tmp = rsvp;
     tmp.SearchName = rsvp.Name.toLowerCase();
-    tmp.SearchSpecialTitle = rsvp.SpecialTitle.toLowerCase();
+    tmp.SearchEmail = rsvp.SearchEmail.toLowerCase();
     let rsvpsCollection = this.db.collection('Rsvps');
     return rsvpsCollection.add(tmp);
   }

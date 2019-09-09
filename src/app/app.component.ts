@@ -26,11 +26,6 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Dinners',
-      url: '/dinner-list',
-      icon: 'list'
-    },
-    {
       title: 'New RSVP',
       url: '/start-new-rsvp',
       icon: 'list'

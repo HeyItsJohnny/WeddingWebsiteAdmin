@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RsvpGuest, RsvpGuestService } from 'src/app/services/rsvp-guest.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, LoadingController, AlertController} from '@ionic/angular';
-import { Dinner, DinnerService } from 'src/app/services/dinner.service';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -12,13 +11,9 @@ import { MenuController } from '@ionic/angular';
 })
 export class RsvpGuestDetailsPage implements OnInit {
 
-  dinners: Dinner[];
-
   rsvpGuest: RsvpGuest = {
     Name: '',
-    DinnerNotes: '',
-    DinnerChoice: '',
-    DinnerChoiceText: ''
+    DietaryRestrictions: ''
   };
 
 
@@ -30,15 +25,13 @@ export class RsvpGuestDetailsPage implements OnInit {
     private rsvpGuestService: RsvpGuestService, 
     private loadingController: LoadingController,
     public menuController: MenuController,
-    private alertController: AlertController,
-    private dinnerService: DinnerService) { }
+    private alertController: AlertController) { }
 
   ngOnInit() {
     this.rsvpGuestID = this.route.snapshot.params['id'];
     if (this.rsvpGuestID)  {
       this.loadRsvpGuest();
     }
-    this.getDinnerData();
   }
 
   ionViewWillEnter() {
@@ -54,13 +47,6 @@ export class RsvpGuestDetailsPage implements OnInit {
     this.rsvpGuestService.getRsvpGuest(this.rsvpGuestID).subscribe(res => {
       loading.dismiss();
       this.rsvpGuest = res;
-    });
-  }
-
-  getDinnerData() {
-    var din = this.dinnerService.getDinnersToDisplay().subscribe (res => {
-      this.dinners = res;
-      din.unsubscribe();
     });
   }
 
@@ -109,58 +95,7 @@ export class RsvpGuestDetailsPage implements OnInit {
     }).then(alert => alert.present());
   }
 
-  async goToDinnerSelection() {
-    this.saveRsvp();
-    var options = {
-      header: "Dinner Selection",
-      subHeader: "Please select a dinner",
-      inputs: [],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: (data: any) => {
-            this.rsvpGuestService.updateRsvpGuestDinnerChoiceText(this.getDinnerString(data),this.rsvpGuestID);
-            this.rsvpGuestService.updateRsvpGuestDinnerChoice(data,this.rsvpGuestID).then(function() {
-              this.nav.goBack(true);
-            });     
-          }
-        }
-      ]
-    };
-
-    for (let item of this.dinners) {
-      options.inputs.push({ name : item.Name, value: item.id , label: item.Name, type: 'radio', checked: this.setTheInputCheck(item.id)});
-    }
-    
-    let alert = await this.alertController.create(options);
-    await alert.present();
-  }
-
-  setTheInputCheck(dinnerID: string){
-    if (dinnerID == this.rsvpGuest.DinnerChoice) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  getDinnerString(dinnerID: string) {
-    for (let item of this.dinners) {
-      if (item.id == dinnerID) {
-        return item.Name;
-      }
-    }
-    return "";
-  }
-
-  saveRsvp() {
+  /*saveRsvp() {
     if (this.rsvpGuestID ) {
       this.rsvpGuestService.updateRsvpGuest(this.rsvpGuest, this.rsvpGuestID).then(docRef => {
       });
@@ -169,6 +104,6 @@ export class RsvpGuestDetailsPage implements OnInit {
         this.rsvpGuestID = docRef.id;
       });
     }
-  }
+  }*/
 
 }

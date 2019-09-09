@@ -3,7 +3,6 @@ import { Rsvp, RsvpService } from 'src/app/services/rsvp.service';
 import { RsvpGuest, RsvpGuestService } from 'src/app/services/rsvp-guest.service';
 import { AlertController } from '@ionic/angular';
 import { Events } from 'ionic-angular';
-import { Dinner, DinnerService } from 'src/app/services/dinner.service';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -13,7 +12,6 @@ import { MenuController } from '@ionic/angular';
 })
 export class StartNewRsvpPage implements OnInit {
   rsvps: Rsvp[];
-  dinners: Dinner[];
   deleteRsvpGuests: RsvpGuest[];
   addRsvpGuests: RsvpGuest[];
 
@@ -21,71 +19,50 @@ export class StartNewRsvpPage implements OnInit {
     public alertController: AlertController,
     private rsvpService: RsvpService,
     private rsvpGuestService: RsvpGuestService,
-    private dinnerService: DinnerService,
     public menuController: MenuController,
     public events: Events) { }
 
   findRsvp: Rsvp = {
     Name: '',
-    SpecialTitle: '',
-    SearchName: '',
-    SearchSpecialTitle: '',
     Email: '',
+    SearchName: '',
+    SearchEmail: '',
     PhoneNo: '',
     Address1: '',
     Address2: '',
     AddressCity: '',
     AddressState: '',
     AddressPostCode: '',
-    CoupleNotes: '',
-    UpdatedAt: 0,
-    isGoing: false,
-    ThankYouLetterSent: false,
     NumberOfGuests: 0,
-    CreatedAt: 0
+    AttendingOption: ''
   };
 
   getRsvp: Rsvp = {
     Name: '',
-    SpecialTitle: '',
-    SearchName: '',
-    SearchSpecialTitle: '',
     Email: '',
+    SearchName: '',
+    SearchEmail: '',
     PhoneNo: '',
     Address1: '',
     Address2: '',
     AddressCity: '',
     AddressState: '',
     AddressPostCode: '',
-    CoupleNotes: '',
-    UpdatedAt: 0,
-    isGoing: false,
-    ThankYouLetterSent: false,
     NumberOfGuests: 0,
-    CreatedAt: 0
+    AttendingOption: ''
   };
 
   rsvpGuest: RsvpGuest = {
     Name: '',
-    DinnerNotes: '',
-    DinnerChoice: '',
-    DinnerChoiceText: ''
+    DietaryRestrictions: ''
   };
 
 
   ngOnInit() {
-    this.getDinnerData(); 
   }
 
   ionViewWillEnter() {
     this.menuController.enable(true);
-  }
-
-  getDinnerData() {
-    var din = this.dinnerService.getDinnersToDisplay().subscribe (res => {
-      this.dinners = res;
-      din.unsubscribe();
-    });
   }
 
   findRSVPRecord() {
@@ -99,7 +76,7 @@ export class StartNewRsvpPage implements OnInit {
   getRSVPrecord() {
     var rservice = this.rsvpService.getRsvpFromSearch(this.findRsvp.Name).subscribe(res => {
       if (res.length == 0) {
-        this.presentAlert("Error","RSVP was not found. Please try another name.");
+        this.presentAlert("Error","RSVP was not found. Please try another email.");
       } else {
         this.rsvps = res.map(a => {
           const rsvp: Rsvp = a.payload.doc.data() as Rsvp;
@@ -133,34 +110,10 @@ export class StartNewRsvpPage implements OnInit {
           text: 'No',
           handler: () => {
             this.rsvpService.updateRsvpAttendance(DocSetID,false);
-            this.setNotAttendingNote(DocSetID);
           }
         }
       ]
     }).then(alert => alert.present())
-  }
-
-  setNotAttendingNote(DocSetID: string) {
-    this.alertController.create({
-      header: "Send the couple a note.",
-      message: "Please leave the couple a small note.",
-      inputs: [        
-        {
-          name: 'SmallNote',
-          type: 'text',
-          placeholder: 'Couple Note'
-        }        
-      ],
-      buttons: [
-        {
-          text: 'OK',
-          handler: (data) => {
-            console.log(data.SmallNote);
-            this.rsvpService.updateRsvpCoupleNote(DocSetID,data.SmallNote);
-          }
-        }
-      ]
-    }).then(alert => alert.present());
   }
 
   enterGuestInformation(DocSetID: string, NumOfGuests: number) {
@@ -210,7 +163,6 @@ export class StartNewRsvpPage implements OnInit {
               }
             } 
             this.askDietaryRestrictions();  
-            this.startDinnerSelection(); 
           }
         }
       ]
@@ -221,55 +173,6 @@ export class StartNewRsvpPage implements OnInit {
     }
     this.alertController.create(options).then(alert => alert.present());
   }
-
-  startDinnerSelection() {
-    this.events.publish('guest:created', this.getRsvp.id);
-    var rsvpGuestUbsubscribe = this.rsvpGuestService.getRsvpGuestsForSearch().subscribe(data => {
-      this.addRsvpGuests  = data;
-      rsvpGuestUbsubscribe.unsubscribe();
-      for(var item of this.addRsvpGuests) {
-        this.setDinnerSelection(item.id, item.Name);
-      }
-    })
-  }
-
-  
-  async setDinnerSelection(rsvpGuestID: string, rsvpGuestName: string) {
-    var options = {
-      header: rsvpGuestName + " Dinner Selection",
-      subHeader: "Please select a dinner",
-      inputs: [],
-      buttons: [
-        {
-          text: 'Ok',
-          handler: (data: any) => {
-            console.log('Data: ' + data);
-            this.events.publish('guest:created', this.getRsvp.id);
-            this.rsvpGuestService.updateRsvpGuestDinnerChoiceText(this.getDinnerString(data),rsvpGuestID);
-            this.rsvpGuestService.updateRsvpGuestDinnerChoice(data,rsvpGuestID).then(function() {
-              console.log("Dinner Choice successfully updated!");
-            });
-          }
-        }
-      ]
-    };
-
-    for (let item of this.dinners) {
-      options.inputs.push({ name : item.Name, value: item.id , label: item.Name, type: 'radio'});
-    }
-    
-    let alert = await this.alertController.create(options);
-    await alert.present();
-  }
-
-  getDinnerString(dinnerID: string) {
-    for (let item of this.dinners) {
-      if (item.id == dinnerID) {
-        return item.Name;
-      }
-    }
-    return "";
-  } 
 
  askDietaryRestrictions() {
     this.alertController.create({

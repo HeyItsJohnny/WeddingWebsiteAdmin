@@ -3,9 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'admin-home', pathMatch: 'full' },
-  { path: 'dinner-list', loadChildren: './pages/dinner-list/dinner-list.module#DinnerListPageModule' },
-  { path: 'dinner-details', loadChildren: './pages/dinner-details/dinner-details.module#DinnerDetailsPageModule' },
-  { path: 'dinner-details/:id', loadChildren: './pages/dinner-details/dinner-details.module#DinnerDetailsPageModule' },
   { path: 'wedding-day-details', loadChildren: './pages/wedding-day-details/wedding-day-details.module#WeddingDayDetailsPageModule' },
   { path: 'rsvp-details', loadChildren: './pages/rsvp-details/rsvp-details.module#RsvpDetailsPageModule' },
   { path: 'rsvp-details/:id', loadChildren: './pages/rsvp-details/rsvp-details.module#RsvpDetailsPageModule' },
