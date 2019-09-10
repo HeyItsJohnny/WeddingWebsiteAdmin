@@ -69,12 +69,13 @@ export class StartNewRsvpPage implements OnInit {
     if (this.findRsvp.Name == "") {
       this.presentAlert("Error","Please enter in the Name on the RSVP.");
     } else {
+      //this.presentAlert("Success!","Found name in RSVP.");
       this.getRSVPrecord();
     }
   }
 
   getRSVPrecord() {
-    var rservice = this.rsvpService.getRsvpFromSearch(this.findRsvp.Name).subscribe(res => {
+    var rservice = this.rsvpService.getRsvpNameFromSearch(this.findRsvp.Name).subscribe(res => {
       if (res.length == 0) {
         this.presentAlert("Error","RSVP was not found. Please try another email.");
       } else {
@@ -85,15 +86,16 @@ export class StartNewRsvpPage implements OnInit {
           this.getRsvp.Name = rsvp.Name;
           this.getRsvp.Email = rsvp.Email;
           this.getRsvp.NumberOfGuests = rsvp.NumberOfGuests;          
-          this.showAttendingAlert(rsvp.id,rsvp.NumberOfGuests, rsvp.Name);
+          //this.showAttendingAlert(rsvp.id,rsvp.NumberOfGuests, rsvp.Name);
           rservice.unsubscribe();
+          this.presentAlert("SUCCESS","Found your RSVP.");
           return rsvp;          
         });
       }      
     });
   }
 
-  showAttendingAlert(DocSetID: string, NumOfGuests: number, RSVPName: string)
+  /*showAttendingAlert(DocSetID: string, NumOfGuests: number, RSVPName: string)
   {    
     this.alertController.create({
       header: "Hello " + RSVPName + "!",
@@ -190,7 +192,7 @@ export class StartNewRsvpPage implements OnInit {
       options.inputs.push({ name: item.id,  type: 'text', placeholder: item.Name + " Diet Notes"});
     }
     this.alertController.create(options).then(alert => alert.present());
-  }
+  }*/
 
   async presentAlert(headerStr: string, messageStr: string) {
     const alert = await this.alertController.create({

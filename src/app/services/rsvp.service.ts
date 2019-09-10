@@ -61,8 +61,12 @@ export class RsvpService {
     return rsvpsCollection.add(tmp);
   }
 
-  getRsvpFromSearch(NameToSearch: string) {
+  getRsvpNameFromSearch(NameToSearch: string) {
     return this.db.collection<Rsvp>('Rsvps', ref => ref.where('Name', '==', NameToSearch).limit(1)).snapshotChanges();
+  }
+
+  getRsvpEmailFromSearch(NameToSearch: string) {
+    return this.db.collection<Rsvp>('Rsvps', ref => ref.where('Email', '==', NameToSearch).limit(1)).snapshotChanges();
   }
 
   updateRsvpAttendance(id: string, attendingOption: string){

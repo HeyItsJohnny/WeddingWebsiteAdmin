@@ -70,10 +70,12 @@ export class RsvpDetailsPage implements OnInit {
  
     if (this.rsvpId) {
       this.rsvpService.updateRsvp(this.rsvp, this.rsvpId).then(() => {
+        loading.dismiss();
         this.router.navigateByUrl('/rsvp-list');
       });
     } else {
       this.rsvpService.addRsvp(this.rsvp).then(() => {
+        loading.dismiss();
         this.router.navigateByUrl('/rsvp-list');
       });
     }
@@ -100,7 +102,7 @@ export class RsvpDetailsPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.rsvpService.removeRsvp(this.rsvpId).then(() => {
-              this.nav.back;
+              this.router.navigateByUrl('/rsvp-list');
             });
           }
         },
