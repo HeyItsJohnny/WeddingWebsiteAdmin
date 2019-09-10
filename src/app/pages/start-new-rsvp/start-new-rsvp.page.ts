@@ -69,7 +69,6 @@ export class StartNewRsvpPage implements OnInit {
     if (this.findRsvp.Name == "") {
       this.presentAlert("Error","Please enter in the Name on the RSVP.");
     } else {
-      //this.presentAlert("Success!","Found name in RSVP.");
       this.getRSVPrecord();
     }
   }
@@ -86,7 +85,7 @@ export class StartNewRsvpPage implements OnInit {
           this.getRsvp.Name = rsvp.Name;
           this.getRsvp.Email = rsvp.Email;
           this.getRsvp.NumberOfGuests = rsvp.NumberOfGuests;          
-          //this.showAttendingAlert(rsvp.id,rsvp.NumberOfGuests, rsvp.Name);
+          this.showAttendingAlert(rsvp.id,rsvp.NumberOfGuests, rsvp.Name);
           rservice.unsubscribe();
           this.presentAlert("SUCCESS","Found your RSVP.");
           return rsvp;          
@@ -95,7 +94,7 @@ export class StartNewRsvpPage implements OnInit {
     });
   }
 
-  /*showAttendingAlert(DocSetID: string, NumOfGuests: number, RSVPName: string)
+  showAttendingAlert(DocSetID: string, NumOfGuests: number, RSVPName: string)
   {    
     this.alertController.create({
       header: "Hello " + RSVPName + "!",
@@ -105,8 +104,7 @@ export class StartNewRsvpPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.rsvpService.updateRsvpAttendance(DocSetID,"Going");
-            this.enterAllGuests(NumOfGuests);
-            //Add to Going Table
+            this.enterAllGuests(NumOfGuests);            
           }
         }, {
           text: 'No',
@@ -192,7 +190,7 @@ export class StartNewRsvpPage implements OnInit {
       options.inputs.push({ name: item.id,  type: 'text', placeholder: item.Name + " Diet Notes"});
     }
     this.alertController.create(options).then(alert => alert.present());
-  }*/
+  }
 
   async presentAlert(headerStr: string, messageStr: string) {
     const alert = await this.alertController.create({
