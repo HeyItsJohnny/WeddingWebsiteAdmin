@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
+import { Events } from 'ionic-angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     StatusBar,
+    Events,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
