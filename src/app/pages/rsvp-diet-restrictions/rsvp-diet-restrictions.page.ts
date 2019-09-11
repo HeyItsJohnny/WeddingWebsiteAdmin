@@ -13,4 +13,8 @@ export class RsvpDietRestrictionsPage implements OnInit {
   ngOnInit() {
   }
 
+  submitDietRestrictions() {
+    
+  }
+
 }

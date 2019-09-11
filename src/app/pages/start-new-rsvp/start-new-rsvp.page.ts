@@ -6,6 +6,7 @@ import { Events } from 'ionic-angular';
 import { MenuController } from '@ionic/angular';
 import { RsvpAttendingNoDetails, RsvpAttendingNoService} from 'src/app/services/rsvp-attending-no.service';
 import { RsvpAttendingDetails, RsvpAttendingService} from 'src/app/services/rsvp-attending.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-new-rsvp',
@@ -24,6 +25,7 @@ export class StartNewRsvpPage implements OnInit {
     private rsvpAttend: RsvpAttendingService,
     private rsvpNoAttend: RsvpAttendingNoService,
     public menuController: MenuController,
+    private router: Router,
     public events: Events) { }
 
   findRsvp: Rsvp = {
@@ -182,9 +184,7 @@ export class StartNewRsvpPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.presentAlert("SUCCESS","Go to Dietary Restrictions Page..");
-            //this.getAllGuests(); 
-            //this.setDietaryRestrictions();
+            this.router.navigateByUrl('/rsvp-diet-restrictions/' + DocSetID);
           }
         }, {
           text: 'No',
