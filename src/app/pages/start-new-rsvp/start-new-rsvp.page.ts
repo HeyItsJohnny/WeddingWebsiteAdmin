@@ -87,7 +87,7 @@ export class StartNewRsvpPage implements OnInit {
           this.getRsvp.NumberOfGuests = rsvp.NumberOfGuests;          
           this.showAttendingAlert(rsvp.id,rsvp.NumberOfGuests, rsvp.Name);
           rservice.unsubscribe();
-          this.presentAlert("SUCCESS","Found your RSVP.");
+          //this.presentAlert("SUCCESS","Found your RSVP.");
           return rsvp;          
         });
       }      
