@@ -121,7 +121,7 @@ export class StartNewRsvpPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.rsvpService.updateRsvpAttendance(DocSetID,"Going");
-            this.enterAllGuests(NumOfGuests);            
+            this.enterAllGuests(NumOfGuests,DocSetID);            
           }
         }, {
           text: 'No',
@@ -134,7 +134,7 @@ export class StartNewRsvpPage implements OnInit {
     }).then(alert => alert.present())
   }
 
-  enterAllGuests(NumOfGuests: number) {
+  enterAllGuests(NumOfGuests: number, DocSetID: string) {
     var options = {
       header: "List all attendees",
       message: "Please include yourself below",
@@ -147,7 +147,7 @@ export class StartNewRsvpPage implements OnInit {
               if (data[k] != "") {
                 this.events.publish('guest:created', this.getRsvp.id);
                 this.rsvpGuest.Name = data[k];
-                //this.setGuestsAttending(data[k]);
+                this.setGuestsAttending(data[k],DocSetID);
                 this.rsvpGuestService.addRsvpGuest(this.rsvpGuest).then(docRef => {
                 });
               }
@@ -226,10 +226,9 @@ export class StartNewRsvpPage implements OnInit {
     }
   }
 
-  /*setGuestsAttending(RSVPName: string) {
-    this.rsvpAttending.rsvpID = this.getRsvp.id;
+  setGuestsAttending(RSVPName: string, DocSetID: string) {
+    this.rsvpAttending.rsvpID = DocSetID;
     this.rsvpAttending.rsvpGuestID = '';
     this.rsvpAttend.addRsvpAttending(this.rsvpAttending,RSVPName);
-  }*/
-
+  }
 }
