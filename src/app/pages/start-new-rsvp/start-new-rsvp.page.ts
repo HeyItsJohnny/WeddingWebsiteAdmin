@@ -128,12 +128,11 @@ export class StartNewRsvpPage implements OnInit {
           handler: () => {
             this.rsvpService.updateRsvpAttendance(DocSetID,"Not Going");
             for (var i = 1; i <= NumOfGuests; i++) {
-              this.rsvpAttendingNo.id = RSVPName + '-' + NumOfGuests;
+              this.rsvpAttendingNo.id = RSVPName + '-' + i;
               this.rsvpAttendingNo.rsvpID = DocSetID;
               this.rsvpAttendingNo.rsvpGuestID = '';
               this.rsvpNoAttend.addRsvpAttending(this.rsvpAttendingNo,RSVPName + '-' + NumOfGuests);
             }
-            //Add to Not Going Table
           }
         }
       ]
@@ -155,10 +154,10 @@ export class StartNewRsvpPage implements OnInit {
                 this.rsvpGuest.Name = data[k];
                 this.rsvpGuestService.addRsvpGuest(this.rsvpGuest).then(docRef => {
                   this.rsvpGuest.id = docRef.id;
-                  this.rsvpAttending.id = this.rsvpGuest.Name;
+                  this.rsvpAttending.id = this.rsvpGuest.Name + '-' + k;
                   this.rsvpAttending.rsvpID = this.getRsvp.id;
                   this.rsvpAttending.rsvpGuestID = '';
-                  this.rsvpAttend.addRsvpAttending(this.rsvpAttending,this.rsvpGuest.Name);
+                  this.rsvpAttend.addRsvpAttending(this.rsvpAttending,this.rsvpGuest.Name + '-' + k);
                 });
               }
             } 
