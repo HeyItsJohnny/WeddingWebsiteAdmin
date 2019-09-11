@@ -149,10 +149,12 @@ export class StartNewRsvpPage implements OnInit {
                 this.rsvpGuest.Name = data[k];
                 this.setGuestsAttending(data[k],DocSetID);
                 this.rsvpGuestService.addRsvpGuest(this.rsvpGuest).then(docRef => {
+                  this.rsvpGuest.id = docRef.id;
                 });
               }
             } 
             this.askDietaryRestrictions();  
+            this.getAllGuests();
           }
         }
       ]
@@ -162,6 +164,14 @@ export class StartNewRsvpPage implements OnInit {
       options.inputs.push({ name: "guest" + i,  type: 'text', placeholder: "Guest Name"});
     }
     this.alertController.create(options).then(alert => alert.present());
+  }
+
+  getAllGuests() {
+    this.events.publish('guest:created', this.getRsvp.id);
+    var rsvpGuestUbsubscribe = this.rsvpGuestService.getRsvpGuestsForSearch().subscribe(data => {
+      this.addRsvpGuests  = data;
+      rsvpGuestUbsubscribe.unsubscribe();
+    })
   }
 
  askDietaryRestrictions() {
