@@ -220,7 +220,6 @@ export class StartNewRsvpPage implements OnInit {
 
   setGuestsNotAttending(NumOfGuests: number, RSVPName: string, RSVPID: string) {
     for (var i = 1; i <= NumOfGuests; i++) {
-      this.rsvpAttendingNo.id = RSVPName + '-' + i;
       this.rsvpAttendingNo.rsvpID = RSVPID;
       this.rsvpAttendingNo.rsvpGuestID = '';
       this.rsvpNoAttend.addRsvpAttending(this.rsvpAttendingNo,RSVPName + '-' + i);
