@@ -12,7 +12,9 @@ const routes: Routes = [
   { path: 'rsvp-guest-details', loadChildren: './pages/rsvp-guest-details/rsvp-guest-details.module#RsvpGuestDetailsPageModule' },
   { path: 'rsvp-guest-details/:id', loadChildren: './pages/rsvp-guest-details/rsvp-guest-details.module#RsvpGuestDetailsPageModule' },
   { path: 'start-new-rsvp', loadChildren: './pages/start-new-rsvp/start-new-rsvp.module#StartNewRsvpPageModule' },
-  { path: 'admin-home', loadChildren: './pages/admin-home/admin-home.module#AdminHomePageModule' }
+  { path: 'admin-home', loadChildren: './pages/admin-home/admin-home.module#AdminHomePageModule' },
+  { path: 'rsvp-diet-restrictions', loadChildren: './pages/rsvp-diet-restrictions/rsvp-diet-restrictions.module#RsvpDietRestrictionsPageModule' },
+  { path: 'rsvp-diet-restrictions/:id', loadChildren: './pages/rsvp-diet-restrictions/rsvp-diet-restrictions.module#RsvpDietRestrictionsPageModule' }
 ];
 
 @NgModule({
