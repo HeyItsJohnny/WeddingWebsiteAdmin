@@ -127,12 +127,7 @@ export class StartNewRsvpPage implements OnInit {
           text: 'No',
           handler: () => {
             this.rsvpService.updateRsvpAttendance(DocSetID,"Not Going");
-            for (var i = 1; i <= NumOfGuests; i++) {
-              this.rsvpAttendingNo.id = RSVPName + '-' + i;
-              this.rsvpAttendingNo.rsvpID = DocSetID;
-              this.rsvpAttendingNo.rsvpGuestID = '';
-              this.rsvpNoAttend.addRsvpAttending(this.rsvpAttendingNo,RSVPName + '-' + NumOfGuests);
-            }
+            this.setGuestsNotAttending(NumOfGuests,RSVPName,DocSetID);
           }
         }
       ]
@@ -152,10 +147,8 @@ export class StartNewRsvpPage implements OnInit {
               if (data[k] != "") {
                 this.events.publish('guest:created', this.getRsvp.id);
                 this.rsvpGuest.Name = data[k];
+                this.setGuestsAttending(data[k]);
                 this.rsvpGuestService.addRsvpGuest(this.rsvpGuest).then(docRef => {
-                  this.rsvpAttending.rsvpID = this.getRsvp.id;
-                  this.rsvpAttending.rsvpGuestID = '';
-                  this.rsvpAttend.addRsvpAttending(this.rsvpAttending,data[k] + '-' + k);
                 });
               }
             } 
@@ -223,6 +216,21 @@ export class StartNewRsvpPage implements OnInit {
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+  setGuestsNotAttending(NumOfGuests: number, RSVPName: string, RSVPID: string) {
+    for (var i = 1; i <= NumOfGuests; i++) {
+      this.rsvpAttendingNo.id = RSVPName + '-' + i;
+      this.rsvpAttendingNo.rsvpID = RSVPID;
+      this.rsvpAttendingNo.rsvpGuestID = '';
+      this.rsvpNoAttend.addRsvpAttending(this.rsvpAttendingNo,RSVPName + '-' + i);
+    }
+  }
+
+  setGuestsAttending(RSVPName: string) {
+    this.rsvpAttending.rsvpID = this.getRsvp.id;
+    this.rsvpAttending.rsvpGuestID = '';
+    this.rsvpAttend.addRsvpAttending(this.rsvpAttending,RSVPName);
   }
 
 }
