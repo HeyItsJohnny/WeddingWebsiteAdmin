@@ -182,8 +182,8 @@ export class StartNewRsvpPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.getAllGuests(); 
             this.setDietaryRestrictions();
+            this.getAllGuests(); 
           }
         }, {
           text: 'No',
