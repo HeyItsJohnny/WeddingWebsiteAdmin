@@ -154,8 +154,7 @@ export class StartNewRsvpPage implements OnInit {
                 });
               }
             } 
-            this.askDietaryRestrictions();
-            //this.getAllGuests(); 
+            this.askDietaryRestrictions(DocSetID);
           }
         }
       ]
@@ -167,15 +166,15 @@ export class StartNewRsvpPage implements OnInit {
     this.alertController.create(options).then(alert => alert.present());
   }
 
-  getAllGuests() {
+  /*getAllGuests() {
     this.events.publish('guest:created', this.getRsvp.id);
     var rsvpGuestUbsubscribe = this.rsvpGuestService.getRsvpGuestsForSearch().subscribe(data => {
       this.addRsvpGuests  = data;
       rsvpGuestUbsubscribe.unsubscribe();
     })
-  }
+  }*/
 
- askDietaryRestrictions() {
+ askDietaryRestrictions(DocSetID: string) {
     this.alertController.create({
       header: "Allergies/Dietary Restrictions",
       message: "Does your group have food allergies or require any dietary restrictions?",
@@ -183,20 +182,21 @@ export class StartNewRsvpPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.getAllGuests(); 
-            this.setDietaryRestrictions();
+            this.presentAlert("SUCCESS","Go to Dietary Restrictions Page..");
+            //this.getAllGuests(); 
+            //this.setDietaryRestrictions();
           }
         }, {
           text: 'No',
           handler: () => {
-            console.log("No Dietary restrictions.");
+            this.presentAlert("Thank you!","If you have any questions please contact us at nancy.tran.15@gmail.com or jonathan.laroco@gmail.com");
           }
         }
       ]
     }).then(alert => alert.present());
   }
 
-  setDietaryRestrictions() {
+  /*setDietaryRestrictions() {
     var options = {
       header: "Allergies/Dietary Restrictions",
       message: "Please note all dietary restrictions & Food Allergies within your group.",
@@ -220,7 +220,7 @@ export class StartNewRsvpPage implements OnInit {
       options.inputs.push({ name: item.id,  type: 'text', placeholder: item.Name + " Diet Notes"});
     }
     this.alertController.create(options).then(alert => alert.present());
-  }
+  } */
 
   async presentAlert(headerStr: string, messageStr: string) {
     const alert = await this.alertController.create({
