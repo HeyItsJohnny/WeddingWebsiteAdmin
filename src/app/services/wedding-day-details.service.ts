@@ -58,7 +58,6 @@ export class WeddingDayDetailsService {
  
   addWeddingDay(weddingParty: WeddingDayDetails) {
     return this.weddingDaysCollection.doc('Details').set(weddingParty);
-    //return this.weddingDaysCollection.add(weddingParty);
   }
 
   removeWeddingDay(id) {

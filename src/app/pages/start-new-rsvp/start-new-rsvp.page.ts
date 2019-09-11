@@ -4,6 +4,8 @@ import { RsvpGuest, RsvpGuestService } from 'src/app/services/rsvp-guest.service
 import { AlertController } from '@ionic/angular';
 import { Events } from 'ionic-angular';
 import { MenuController } from '@ionic/angular';
+import { RsvpAttendingNoDetails, RsvpAttendingNoService} from 'src/app/services/rsvp-attending-no.service';
+import { RsvpAttendingDetails, RsvpAttendingService} from 'src/app/services/rsvp-attending.service';
 
 @Component({
   selector: 'app-start-new-rsvp',
@@ -19,6 +21,8 @@ export class StartNewRsvpPage implements OnInit {
     public alertController: AlertController,
     private rsvpService: RsvpService,
     private rsvpGuestService: RsvpGuestService,
+    private rsvpAttend: RsvpAttendingService,
+    private rsvpNoAttend: RsvpAttendingNoService,
     public menuController: MenuController,
     public events: Events) { }
 
@@ -61,6 +65,16 @@ export class StartNewRsvpPage implements OnInit {
     DietaryRestrictions: ''
   };
 
+  rsvpAttending: RsvpAttendingDetails = {
+    rsvpID: '',
+    rsvpGuestID: ''
+  };
+
+  rsvpAttendingNo: RsvpAttendingNoDetails = {
+    rsvpID: '',
+    rsvpGuestID: ''
+  };
+
 
   ngOnInit() {
   }
@@ -91,7 +105,6 @@ export class StartNewRsvpPage implements OnInit {
           this.getRsvp.NumberOfGuests = rsvp.NumberOfGuests;          
           this.showAttendingAlert(rsvp.id,rsvp.NumberOfGuests, rsvp.Name);
           rservice.unsubscribe();
-          //this.presentAlert("SUCCESS","Found your RSVP.");
           return rsvp;          
         });
       }      
@@ -114,6 +127,12 @@ export class StartNewRsvpPage implements OnInit {
           text: 'No',
           handler: () => {
             this.rsvpService.updateRsvpAttendance(DocSetID,"Not Going");
+            for (var i = 1; i <= NumOfGuests; i++) {
+              this.rsvpAttendingNo.id = RSVPName + '-' + NumOfGuests;
+              this.rsvpAttendingNo.rsvpID = DocSetID;
+              this.rsvpAttendingNo.rsvpGuestID = '';
+              this.rsvpNoAttend.addRsvpAttending(this.rsvpAttendingNo,RSVPName + '-' + NumOfGuests);
+            }
             //Add to Not Going Table
           }
         }
@@ -136,6 +155,10 @@ export class StartNewRsvpPage implements OnInit {
                 this.rsvpGuest.Name = data[k];
                 this.rsvpGuestService.addRsvpGuest(this.rsvpGuest).then(docRef => {
                   this.rsvpGuest.id = docRef.id;
+                  this.rsvpAttending.id = this.rsvpGuest.Name;
+                  this.rsvpAttending.rsvpID = this.getRsvp.id;
+                  this.rsvpAttending.rsvpGuestID = '';
+                  this.rsvpAttend.addRsvpAttending(this.rsvpAttending,this.rsvpGuest.Name);
                 });
               }
             } 
