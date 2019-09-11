@@ -149,7 +149,7 @@ export class StartNewRsvpPage implements OnInit {
                 this.rsvpGuest.Name = data[k];
                 this.setGuestsAttending(data[k],DocSetID);
                 this.rsvpGuestService.addRsvpGuest(this.rsvpGuest).then(docRef => {
-                  this.rsvpGuest.id = docRef.id;
+                  //this.rsvpGuest.id = docRef.id;
                 });
               }
             } 
