@@ -153,8 +153,8 @@ export class StartNewRsvpPage implements OnInit {
                 });
               }
             } 
-            this.askDietaryRestrictions();  
-            this.getAllGuests();
+            this.askDietaryRestrictions();
+            //this.getAllGuests(); 
           }
         }
       ]
@@ -166,13 +166,13 @@ export class StartNewRsvpPage implements OnInit {
     this.alertController.create(options).then(alert => alert.present());
   }
 
-  getAllGuests() {
+  /*getAllGuests() {
     this.events.publish('guest:created', this.getRsvp.id);
     var rsvpGuestUbsubscribe = this.rsvpGuestService.getRsvpGuestsForSearch().subscribe(data => {
       this.addRsvpGuests  = data;
       rsvpGuestUbsubscribe.unsubscribe();
     })
-  }
+  }*/
 
  askDietaryRestrictions() {
     this.alertController.create({
