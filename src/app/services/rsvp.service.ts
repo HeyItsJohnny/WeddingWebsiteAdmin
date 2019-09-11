@@ -8,8 +8,10 @@ export interface Rsvp {
   id?: string;
   Name: string;
   Email: string;
+  RSVPCode: string;
   SearchName: string;
   SearchEmail: string;
+  SearchRSVPCode: string;
   PhoneNo: string;
   Address1: string;
   Address2: string;
@@ -48,7 +50,8 @@ export class RsvpService {
   updateRsvp(rsvp: Rsvp, id: string) {
     var tmp = rsvp;
     tmp.SearchName = rsvp.Name.toLowerCase();
-    tmp.SearchEmail= rsvp.Email.toLowerCase();
+    tmp.SearchEmail = rsvp.Email.toLowerCase();
+    tmp.SearchRSVPCode = rsvp.RSVPCode.toLowerCase(); 
     let rsvpsCollection = this.db.collection('Rsvps');
     return rsvpsCollection.doc(id).update(tmp);
   }
@@ -57,16 +60,21 @@ export class RsvpService {
     var tmp = rsvp;
     tmp.SearchName = rsvp.Name.toLowerCase();
     tmp.SearchEmail = rsvp.Email.toLowerCase();
+    tmp.SearchRSVPCode = rsvp.RSVPCode.toLowerCase(); 
     let rsvpsCollection = this.db.collection('Rsvps');
     return rsvpsCollection.add(tmp);
   }
 
-  getRsvpNameFromSearch(NameToSearch: string) {
+  /*getRsvpNameFromSearch(NameToSearch: string) {
     return this.db.collection<Rsvp>('Rsvps', ref => ref.where('Name', '==', NameToSearch).limit(1)).snapshotChanges();
   }
 
   getRsvpEmailFromSearch(NameToSearch: string) {
     return this.db.collection<Rsvp>('Rsvps', ref => ref.where('Email', '==', NameToSearch).limit(1)).snapshotChanges();
+  }*/
+
+  getRsvpCodeFromSearch(NameToSearch: string) {
+    return this.db.collection<Rsvp>('Rsvps', ref => ref.where('RSVPCode', '==', NameToSearch).limit(1)).snapshotChanges();
   }
 
   updateRsvpAttendance(id: string, attendingOption: string){
@@ -105,6 +113,17 @@ export class RsvpService {
     return new Promise<any>((resolve, reject) => {
       this.db.collection('Rsvps', ref => ref.where('SearchEmail', '>=', searchValue)
       .where('SearchEmail', '<=', searchValue + '\uf8ff'))
+      .snapshotChanges()
+      .subscribe(snapshots => {
+        resolve(snapshots);
+      })
+    })
+  }
+
+  searchRSVPCode(searchValue){
+    return new Promise<any>((resolve, reject) => {
+      this.db.collection('Rsvps', ref => ref.where('SearchRSVPCode', '>=', searchValue)
+      .where('SearchRSVPCode', '<=', searchValue + '\uf8ff'))
       .snapshotChanges()
       .subscribe(snapshots => {
         resolve(snapshots);

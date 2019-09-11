@@ -25,8 +25,10 @@ export class StartNewRsvpPage implements OnInit {
   findRsvp: Rsvp = {
     Name: '',
     Email: '',
+    RSVPCode: '',
     SearchName: '',
     SearchEmail: '',
+    SearchRSVPCode: '',
     PhoneNo: '',
     Address1: '',
     Address2: '',
@@ -40,8 +42,10 @@ export class StartNewRsvpPage implements OnInit {
   getRsvp: Rsvp = {
     Name: '',
     Email: '',
+    RSVPCode: '',
     SearchName: '',
     SearchEmail: '',
+    SearchRSVPCode: '',
     PhoneNo: '',
     Address1: '',
     Address2: '',
@@ -66,7 +70,7 @@ export class StartNewRsvpPage implements OnInit {
   }
 
   findRSVPRecord() {
-    if (this.findRsvp.Name == "") {
+    if (this.findRsvp.RSVPCode == "") {
       this.presentAlert("Error","Please enter in the Name on the RSVP.");
     } else {
       this.getRSVPrecord();
@@ -74,7 +78,7 @@ export class StartNewRsvpPage implements OnInit {
   }
 
   getRSVPrecord() {
-    var rservice = this.rsvpService.getRsvpNameFromSearch(this.findRsvp.Name).subscribe(res => {
+    var rservice = this.rsvpService.getRsvpCodeFromSearch(this.findRsvp.RSVPCode).subscribe(res => {
       if (res.length == 0) {
         this.presentAlert("Error","RSVP was not found. Please try another email.");
       } else {
