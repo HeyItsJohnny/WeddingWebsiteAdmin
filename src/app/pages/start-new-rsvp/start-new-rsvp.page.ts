@@ -128,6 +128,7 @@ export class StartNewRsvpPage implements OnInit {
           handler: () => {
             this.rsvpService.updateRsvpAttendance(DocSetID,"Not Going");
             this.setGuestsNotAttending(NumOfGuests,RSVPName,DocSetID);
+            this.presentAlert("Sorry you cannot make it!","If anything changes please contact us at nancy.tran.15@gmail.com or jonathan.laroco@gmail.com");
           }
         }
       ]
@@ -182,8 +183,8 @@ export class StartNewRsvpPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.setDietaryRestrictions();
             this.getAllGuests(); 
+            this.setDietaryRestrictions();
           }
         }, {
           text: 'No',
@@ -208,6 +209,7 @@ export class StartNewRsvpPage implements OnInit {
               if (data[k] != "") {
                 this.events.publish('guest:created', this.getRsvp.id);
                 this.rsvpGuestService.updateRsvpGuestDietaryRestrictions(data[k],k);
+                this.presentAlert("Thank you!","If you have any questions please contact us at nancy.tran.15@gmail.com or jonathan.laroco@gmail.com");
               }
             } 
           }

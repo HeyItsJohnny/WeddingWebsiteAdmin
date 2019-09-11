@@ -63,19 +63,9 @@ export class RsvpGuestService {
     return rsvpGuestCollection.doc(id).update(rsvpGuest);
   }
 
-  updateRsvpGuestDinnerChoice(dinnerChoiceID: string, id: string) {
+  updateRsvpGuestDietaryRestrictions(dietRestrictions: string, id: string) {
     let rsvpGuestCollection = this.db.collection('Rsvps').doc(this.rsvpId).collection('Guests');
-    return rsvpGuestCollection.doc(id).update({"DinnerChoice": dinnerChoiceID});
-  }
-
-  updateRsvpGuestDinnerChoiceText(dinnerChoiceText: string, id: string) {
-    let rsvpGuestCollection = this.db.collection('Rsvps').doc(this.rsvpId).collection('Guests');
-    return rsvpGuestCollection.doc(id).update({"DinnerChoiceText": dinnerChoiceText});
-  }
-
-  updateRsvpGuestDietaryRestrictions(dinnerNotes: string, id: string) {
-    let rsvpGuestCollection = this.db.collection('Rsvps').doc(this.rsvpId).collection('Guests');
-    return rsvpGuestCollection.doc(id).update({"DinnerNotes": dinnerNotes});
+    return rsvpGuestCollection.doc(id).update({"DietaryRestrictions": dietRestrictions});
   }
  
   addRsvpGuest(rsvpGuest: RsvpGuest) {
