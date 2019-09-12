@@ -8,8 +8,8 @@
   <h2>Please enter in any allergies or dietary restrictions.</h2>
   <ion-list lines="full">
     <ion-item *ngFor="let item of rsvpGuests">
-      <ion-label stacked class="bold-label">{{ item.payload.doc.data().Name }}:</ion-label>
-      <ion-input required type="text"></ion-input>
+      <ion-label stacked class="bold-label">{{ item.Name }}:</ion-label>
+      <ion-input id="{{item.id}}" required type="text"></ion-input>
     </ion-item>
   </ion-list>
   <ion-button expand="full" (click)="submitDietRestrictions()">Submit</ion-button>

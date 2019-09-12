@@ -27,16 +27,17 @@ export class RsvpDietRestrictionsPage {
     this.rsvpId = this.route.snapshot.params['id'];
     if (this.rsvpId)  {   
       this.events.publish('guest:created', this.rsvpId);  
-      this.rsvpGuestService.getRsvpGuests()
-      .then(data => {
-        this.rsvpGuests = data;
-      }) 
+      var guests = this.rsvpGuestService.getRsvpGuestsForSearch().subscribe (res => {
+        this.rsvpGuests = res;
+        guests.unsubscribe();
+      });
     }
   }
 
   submitDietRestrictions() {
-    for(var item of this.rsvpGuests) {
-      console.log("ID: " + item.id);
+    for(const item of this.rsvpGuests) {
+      var input = (<HTMLInputElement>document.getElementById(item.id)).value
+      console.log("ID: " + item.id + " Input Values: " + input);
     }
     console.log("SUBMIT THAT!!!");
   }
