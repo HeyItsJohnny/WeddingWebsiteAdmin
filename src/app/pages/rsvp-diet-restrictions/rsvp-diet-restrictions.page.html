@@ -5,9 +5,10 @@
 </ion-header>
 
 <ion-content>
+  <h2>Please enter in any allergies or dietary restrictions.</h2>
   <ion-list lines="full">
     <ion-item *ngFor="let item of rsvpGuests">
-      <ion-label stacked class="bold-label">{{ item.payload.doc.data().Name }}</ion-label>
+      <ion-label stacked class="bold-label">{{ item.payload.doc.data().Name }}:</ion-label>
       <ion-input required type="text"></ion-input>
     </ion-item>
   </ion-list>
