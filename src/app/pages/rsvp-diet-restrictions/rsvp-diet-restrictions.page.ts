@@ -36,9 +36,8 @@ export class RsvpDietRestrictionsPage {
 
   submitDietRestrictions() {
     for(const item of this.rsvpGuests) {
-      var input = (<HTMLInputElement>document.getElementById(item.id)).value
-      console.log("ID: " + item.id + " Input Values: " + input);
+      var input = (<HTMLInputElement>document.getElementById(item.id)).value;
+      this.rsvpGuestService.updateRsvpGuestDietaryRestrictions(input,item.id);
     }
-    console.log("SUBMIT THAT!!!");
   }
 }
