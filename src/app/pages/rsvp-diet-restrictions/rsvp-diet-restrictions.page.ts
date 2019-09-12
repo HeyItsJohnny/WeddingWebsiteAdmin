@@ -35,7 +35,9 @@ export class RsvpDietRestrictionsPage {
   }
 
   submitDietRestrictions() {
+    for(var item of this.rsvpGuests) {
+      console.log("ID: " + item.id);
+    }
     console.log("SUBMIT THAT!!!");
   }
-
 }
