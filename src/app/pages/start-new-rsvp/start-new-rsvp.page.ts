@@ -104,8 +104,12 @@ export class StartNewRsvpPage implements OnInit {
           this.getRsvp.id = rsvp.id;
           this.getRsvp.Name = rsvp.Name;
           this.getRsvp.Email = rsvp.Email;
-          this.getRsvp.NumberOfGuests = rsvp.NumberOfGuests;          
-          this.showAttendingAlert(rsvp.id,rsvp.NumberOfGuests, rsvp.Name);
+          this.getRsvp.NumberOfGuests = rsvp.NumberOfGuests;   
+          if (rsvp.AttendingOption == '') {
+            this.showAttendingAlert(rsvp.id,rsvp.NumberOfGuests, rsvp.Name);
+          } else {
+            this.presentAlert("You have already RSVPed as " + rsvp.AttendingOption,"Please contact Nancy or Jonathan if this has changed.");
+          }
           rservice.unsubscribe();
           return rsvp;          
         });
