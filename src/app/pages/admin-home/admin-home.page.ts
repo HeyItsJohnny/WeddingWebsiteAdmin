@@ -41,7 +41,6 @@ export class AdminHomePage {
   ionViewWillEnter() {
     this.menuController.enable(true);
     this.loadWeddingDay(); 
-    let date: Date = new Date("2019-04-11");
   }
 
   loadWeddingDay() {
@@ -61,6 +60,8 @@ export class AdminHomePage {
     var options = {
       title: 'Wedding Attendance'
     };
+
+    
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
