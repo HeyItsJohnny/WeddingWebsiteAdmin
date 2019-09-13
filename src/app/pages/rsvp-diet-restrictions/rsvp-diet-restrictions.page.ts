@@ -37,7 +37,8 @@ export class RsvpDietRestrictionsPage {
   submitDietRestrictions() {
     for(const item of this.rsvpGuests) {
       var input = (<HTMLInputElement>document.getElementById(item.id)).value;
-      //this.rsvpGuestService.updateRsvpGuestDietaryRestrictions(input,item.id);
+      this.rsvpGuestService.updateRsvpGuestDietaryRestrictions(input,item.id);
+      this.router.navigateByUrl('/start-new-rsvp');
     }
   }
 }
