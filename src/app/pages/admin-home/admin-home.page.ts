@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { WeddingDayDetails, WeddingDayDetailsService } from 'src/app/services/wedding-day-details.service';
+import { Rsvp, RsvpService } from 'src/app/services/rsvp.service';
 
 declare var google;
 
@@ -30,11 +31,13 @@ export class AdminHomePage {
   };
   weddingDayId = null;
 
-  TotalCost: string;
-  TotalOverUnderBudget: string;
+  TotalInvited: string;
+  TotalAttending: string;
+  TotalNotAttending: string;
 
   constructor(
     private weddingDayDetailsService: WeddingDayDetailsService,
+    private rsvpService: RsvpService,
     public menuController: MenuController) { }
 
 
@@ -55,13 +58,20 @@ export class AdminHomePage {
     var guestData = new google.visualization.DataTable();
     guestData.addColumn('string', 'Attendance');
     guestData.addColumn('number', 'Number of Attendance');  
-    guestData.addRow(["Invited",OverallAttendance]);
+
+    this.rsvpService.getAllInvited().then(result => {
+      this.TotalInvited = "Total Invited: " + result.TotalInvited;
+      guestData.addRow(["Invited",result.TotalInvited]);
+      chart.draw(guestData, options);
+    });
+
+    guestData.addRow(["Estimated Invited",OverallAttendance]);
 
     var options = {
       title: 'Wedding Attendance'
     };
 
-    
+
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 

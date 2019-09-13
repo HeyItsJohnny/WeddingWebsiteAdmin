@@ -130,4 +130,24 @@ export class RsvpService {
       })
     })
   }
+
+  getAllInvited(){
+    return this.getRsvps().then(events => {
+      var singleinvite = events.map(a => {
+        var allInvited = 0;
+        const data = a.payload.doc.data();
+        allInvited += data.NumberOfGuests;
+        return {
+          SingleInvite: allInvited
+        }
+      });
+      var y = 0;
+      for (let x of singleinvite) {
+        y += +x.SingleInvite;
+      }
+      return {
+        TotalInvited: y
+      }
+    });
+  }
 }
