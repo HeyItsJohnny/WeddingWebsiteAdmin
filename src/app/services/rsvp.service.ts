@@ -131,6 +131,17 @@ export class RsvpService {
     })
   }
 
+  searchRSVPAttendance(searchValue){
+    return new Promise<any>((resolve, reject) => {
+      this.db.collection('Rsvps', ref => ref.where('AttendingOption', '>=', searchValue)
+      .where('AttendingOption', '<=', searchValue + '\uf8ff'))
+      .snapshotChanges()
+      .subscribe(snapshots => {
+        resolve(snapshots);
+      })
+    })
+  }
+
   getAllInvited(){
     return this.getRsvps().then(events => {
       var singleinvite = events.map(a => {

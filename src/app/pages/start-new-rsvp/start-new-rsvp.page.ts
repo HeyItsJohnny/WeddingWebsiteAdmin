@@ -126,13 +126,13 @@ export class StartNewRsvpPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.rsvpService.updateRsvpAttendance(DocSetID,"Going");
+            this.rsvpService.updateRsvpAttendance(DocSetID,"Attending");
             this.enterAllGuests(NumOfGuests,DocSetID);            
           }
         }, {
           text: 'No',
           handler: () => {
-            this.rsvpService.updateRsvpAttendance(DocSetID,"Not Going");
+            this.rsvpService.updateRsvpAttendance(DocSetID,"Not Attending");
             this.setGuestsNotAttending(NumOfGuests,RSVPName,DocSetID);
             this.presentAlert("Sorry you cannot make it!","If anything changes please contact us at nancy.tran.15@gmail.com or jonathan.laroco@gmail.com");
           }
