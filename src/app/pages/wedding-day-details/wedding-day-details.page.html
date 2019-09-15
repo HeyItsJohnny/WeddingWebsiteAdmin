@@ -22,6 +22,14 @@
               <ion-label stacked class="bold-label">Number of Guests:</ion-label>
               <ion-input required type="number" [(ngModel)]="weddingDay.EstimatedNoOfGuests"></ion-input>
           </ion-item>   
+          <ion-item>
+              <ion-label stacked class="bold-label">Attending:</ion-label>
+              <ion-input required type="number" [(ngModel)]="weddingDay.NoOfAttending"></ion-input>
+          </ion-item>  
+          <ion-item>
+              <ion-label stacked class="bold-label">Not Attending: </ion-label>
+              <ion-input required type="number" [(ngModel)]="weddingDay.NoOfNotAttending"></ion-input>
+          </ion-item>  
           <br>
           <h1>Venue Details</h1>
           <ion-item>
