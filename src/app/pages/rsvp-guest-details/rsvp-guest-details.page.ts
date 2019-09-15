@@ -94,16 +94,4 @@ export class RsvpGuestDetailsPage implements OnInit {
       ]
     }).then(alert => alert.present());
   }
-
-  /*saveRsvp() {
-    if (this.rsvpGuestID ) {
-      this.rsvpGuestService.updateRsvpGuest(this.rsvpGuest, this.rsvpGuestID).then(docRef => {
-      });
-    } else {
-      this.rsvpGuestService.addRsvpGuest(this.rsvpGuest).then(docRef => {
-        this.rsvpGuestID = docRef.id;
-      });
-    }
-  }*/
-
 }

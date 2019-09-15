@@ -4,8 +4,6 @@ import { RsvpGuest, RsvpGuestService } from 'src/app/services/rsvp-guest.service
 import { AlertController } from '@ionic/angular';
 import { Events } from 'ionic-angular';
 import { MenuController } from '@ionic/angular';
-import { RsvpAttendingNoDetails, RsvpAttendingNoService} from 'src/app/services/rsvp-attending-no.service';
-import { RsvpAttendingDetails, RsvpAttendingService} from 'src/app/services/rsvp-attending.service';
 import { WeddingDayDetails, WeddingDayDetailsService } from 'src/app/services/wedding-day-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -26,8 +24,6 @@ export class StartNewRsvpPage implements OnInit {
     public alertController: AlertController,
     private rsvpService: RsvpService,
     private rsvpGuestService: RsvpGuestService,
-    private rsvpAttend: RsvpAttendingService,
-    private rsvpNoAttend: RsvpAttendingNoService,
     public menuController: MenuController,
     private weddingDayDetailsService: WeddingDayDetailsService, 
     private router: Router,
@@ -72,16 +68,6 @@ export class StartNewRsvpPage implements OnInit {
     DietaryRestrictions: ''
   };
 
-  rsvpAttending: RsvpAttendingDetails = {
-    rsvpID: '',
-    rsvpGuestID: ''
-  };
-
-  rsvpAttendingNo: RsvpAttendingNoDetails = {
-    rsvpID: '',
-    rsvpGuestID: ''
-  };
-
   weddingDay: WeddingDayDetails = {
     WeddingPartyGroupdID: '',
     WeddingDate: null,
@@ -111,8 +97,11 @@ export class StartNewRsvpPage implements OnInit {
   }
 
   async loadWeddingDay() {   
-    this.weddingDayDetailsService.getWeddingDay().subscribe(res => {
+    var wedService = this.weddingDayDetailsService.getWeddingDay().subscribe(res => {
       this.weddingDay = res;
+      this.totalAttending = this.weddingDay.NoOfAttending;
+      this.totalNotAttending = this.weddingDay.NoOfNotAttending;
+      wedService.unsubscribe();
     });
   }
 
@@ -164,7 +153,7 @@ export class StartNewRsvpPage implements OnInit {
           text: 'No',
           handler: () => {
             this.rsvpService.updateRsvpAttendance(DocSetID,"Not Attending");
-            this.setGuestsNotAttending(NumOfGuests,RSVPName,DocSetID);
+            this.setGuestsNotAttending(NumOfGuests);
             this.presentAlert("Sorry you cannot make it!","If anything changes please contact us at nancy.tran.15@gmail.com or jonathan.laroco@gmail.com");
           }
         }
@@ -185,7 +174,7 @@ export class StartNewRsvpPage implements OnInit {
               if (data[k] != "") {
                 this.events.publish('guest:created', this.getRsvp.id);
                 this.rsvpGuest.Name = data[k];
-                this.setGuestsAttending(data[k],DocSetID);
+                this.setGuestsAttending();
                 this.rsvpGuestService.addRsvpGuest(this.rsvpGuest).then(docRef => {
                   //this.rsvpGuest.id = docRef.id;
                 });
@@ -202,14 +191,6 @@ export class StartNewRsvpPage implements OnInit {
     }
     this.alertController.create(options).then(alert => alert.present());
   }
-
-  /*getAllGuests() {
-    this.events.publish('guest:created', this.getRsvp.id);
-    var rsvpGuestUbsubscribe = this.rsvpGuestService.getRsvpGuestsForSearch().subscribe(data => {
-      this.addRsvpGuests  = data;
-      rsvpGuestUbsubscribe.unsubscribe();
-    })
-  }*/
 
  askDietaryRestrictions(DocSetID: string) {
     this.alertController.create({
@@ -231,32 +212,6 @@ export class StartNewRsvpPage implements OnInit {
     }).then(alert => alert.present());
   }
 
-  /*setDietaryRestrictions() {
-    var options = {
-      header: "Allergies/Dietary Restrictions",
-      message: "Please note all dietary restrictions & Food Allergies within your group.",
-      inputs: [],
-      buttons: [
-        {
-          text: 'Ok',
-          handler: (data: any) => {
-            for (var k in data) {
-              if (data[k] != "") {
-                this.events.publish('guest:created', this.getRsvp.id);
-                this.rsvpGuestService.updateRsvpGuestDietaryRestrictions(data[k],k);
-                this.presentAlert("Thank you!","If you have any questions please contact us at nancy.tran.15@gmail.com or jonathan.laroco@gmail.com");
-              }
-            } 
-          }
-        }
-      ]
-    };
-    for(var item of this.addRsvpGuests) {
-      options.inputs.push({ name: item.id,  type: 'text', placeholder: item.Name + " Diet Notes"});
-    }
-    this.alertController.create(options).then(alert => alert.present());
-  } */
-
   async presentAlert(headerStr: string, messageStr: string) {
     const alert = await this.alertController.create({
       header: headerStr,
@@ -266,17 +221,13 @@ export class StartNewRsvpPage implements OnInit {
     await alert.present();
   }
 
-  setGuestsNotAttending(NumOfGuests: number, RSVPName: string, RSVPID: string) {
-    for (var i = 1; i <= NumOfGuests; i++) {
-      this.rsvpAttendingNo.rsvpID = RSVPID;
-      this.rsvpAttendingNo.rsvpGuestID = '';
-      this.rsvpNoAttend.addRsvpAttending(this.rsvpAttendingNo,RSVPName + '-' + i);
-    }
+  setGuestsNotAttending(NumOfGuests: number) {
+    this.totalNotAttending = this.totalNotAttending + NumOfGuests;
+    this.weddingDayDetailsService.updateNotAttending(this.totalNotAttending);
   }
 
-  setGuestsAttending(RSVPName: string, DocSetID: string) {
-    this.rsvpAttending.rsvpID = DocSetID;
-    this.rsvpAttending.rsvpGuestID = '';
-    this.rsvpAttend.addRsvpAttending(this.rsvpAttending,RSVPName);
+  setGuestsAttending() {
+    this.totalAttending = this.totalAttending + 1;
+    this.weddingDayDetailsService.updateAttending(this.totalAttending);
   }
 }
