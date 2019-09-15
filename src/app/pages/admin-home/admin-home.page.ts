@@ -67,8 +67,8 @@ export class AdminHomePage {
       chart.draw(guestData, options);
     });
 
-    //guestData.addRow("Attending", Attending);
-    //guestData.addRow(["Not Attending",NotAttending]);
+    guestData.addRow("Attending", Attending);
+    guestData.addRow(["Not Attending",NotAttending]);
 
     var options = {
       title: 'Wedding Attendance'
