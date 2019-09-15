@@ -14,6 +14,8 @@ export class WeddingDayDetailsPage implements OnInit {
     WeddingPartyGroupdID: '',
     WeddingDate: null,
     EstimatedNoOfGuests: 0,
+    NoOfAttending: 0,
+    NoOfNotAttending: 0,
     YourName: '',
     BudgetEstimate: 0,
     FianceName: '',

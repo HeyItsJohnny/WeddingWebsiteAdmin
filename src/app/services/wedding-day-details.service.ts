@@ -10,6 +10,8 @@ export interface WeddingDayDetails {
   WeddingPartyGroupdID: string;
   WeddingDate: Date;
   EstimatedNoOfGuests: number;
+  NoOfAttending: number;
+  NoOfNotAttending: number;
   YourName: string;
   BudgetEstimate: number;
   FianceName: string;
