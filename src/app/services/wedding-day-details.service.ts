@@ -65,4 +65,14 @@ export class WeddingDayDetailsService {
   removeWeddingDay(id) {
     return this.weddingDaysCollection.doc(id).delete();
   }
+
+  updateAttending(Attending: number){
+    let rsvpsCollection = this.db.collection('WeddingDayDetails');
+    rsvpsCollection.doc('Details').update({"NoOfAttending": Attending});
+  }
+
+  updateNotAttending(NotAttending: number){
+    let rsvpsCollection = this.db.collection('WeddingDayDetails');
+    rsvpsCollection.doc('Details').update({"NoOfNotAttending": NotAttending});
+  }
 }

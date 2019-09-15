@@ -6,6 +6,7 @@ import { Events } from 'ionic-angular';
 import { MenuController } from '@ionic/angular';
 import { RsvpAttendingNoDetails, RsvpAttendingNoService} from 'src/app/services/rsvp-attending-no.service';
 import { RsvpAttendingDetails, RsvpAttendingService} from 'src/app/services/rsvp-attending.service';
+import { WeddingDayDetails, WeddingDayDetailsService } from 'src/app/services/wedding-day-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -18,6 +19,9 @@ export class StartNewRsvpPage implements OnInit {
   deleteRsvpGuests: RsvpGuest[];
   addRsvpGuests: RsvpGuest[];
 
+  totalAttending: number;
+  totalNotAttending: number;
+
   constructor(
     public alertController: AlertController,
     private rsvpService: RsvpService,
@@ -25,6 +29,7 @@ export class StartNewRsvpPage implements OnInit {
     private rsvpAttend: RsvpAttendingService,
     private rsvpNoAttend: RsvpAttendingNoService,
     public menuController: MenuController,
+    private weddingDayDetailsService: WeddingDayDetailsService, 
     private router: Router,
     public events: Events) { }
 
@@ -77,12 +82,38 @@ export class StartNewRsvpPage implements OnInit {
     rsvpGuestID: ''
   };
 
+  weddingDay: WeddingDayDetails = {
+    WeddingPartyGroupdID: '',
+    WeddingDate: null,
+    EstimatedNoOfGuests: 0,
+    NoOfAttending: 0,
+    NoOfNotAttending: 0,
+    YourName: '',
+    BudgetEstimate: 0,
+    FianceName: '',
+    ReceptionTime: null,
+    DinnerTime: null,
+    CocktailTime: null,
+    VenueName: '',
+    VenueAddress1: '',
+    VenueAddress2: '',
+    VenueCity: '',
+    VenueState: '',
+    VenueZip: ''
+  };
 
   ngOnInit() {
+    this.loadWeddingDay();
   }
 
   ionViewWillEnter() {
     this.menuController.enable(true);
+  }
+
+  async loadWeddingDay() {   
+    this.weddingDayDetailsService.getWeddingDay().subscribe(res => {
+      this.weddingDay = res;
+    });
   }
 
   findRSVPRecord() {
