@@ -51,12 +51,12 @@ export class AdminHomePage {
   loadWeddingDay() {
     var wedDay = this.weddingDayDetailsService.getWeddingDay().subscribe(res => {
       this.weddingDay = res;
-      this.getBudgetData(this.weddingDay.EstimatedNoOfGuests);
+      this.getBudgetData(this.weddingDay.NoOfAttending,this.weddingDay.NoOfNotAttending);
       wedDay.unsubscribe();
     });
   }
 
-  getBudgetData(OverallAttendance: number) {
+  getBudgetData(Attending: number, NotAttending: number) {
     var guestData = new google.visualization.DataTable();
     guestData.addColumn('string', 'Attendance');
     guestData.addColumn('number', 'Number of Attendance');  
@@ -67,13 +67,12 @@ export class AdminHomePage {
       chart.draw(guestData, options);
     });
 
-    guestData.addRow(["Estimated Invited",OverallAttendance]);
+    guestData.addRow("Attending", Attending);
+    guestData.addRow(["Not Attending",NotAttending]);
 
     var options = {
       title: 'Wedding Attendance'
     };
-
-
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
