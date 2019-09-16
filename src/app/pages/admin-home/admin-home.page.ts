@@ -70,6 +70,9 @@ export class AdminHomePage {
     guestData.addRow(["Attending", Attending]);
     guestData.addRow(["Not Attending",NotAttending]);
 
+    this.TotalAttending = "Total Attending: " + Attending;
+    this.TotalNotAttending = "Total Not Attending: " + NotAttending;
+
     var options = {
       title: 'Wedding Attendance'
     };
