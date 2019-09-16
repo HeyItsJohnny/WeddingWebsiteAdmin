@@ -101,7 +101,7 @@ export class RsvpService {
   searchRSVPName(searchValue){
     return new Promise<any>((resolve, reject) => {
       this.db.collection('Rsvps', ref => ref.where('SearchName', '>=', searchValue)
-      .where('SearchName', '<=', searchValue + '\uf8ff'))
+      .where('SearchName', '<=', searchValue + '\uf8ff').orderBy('SearchName'))
       .snapshotChanges()
       .subscribe(snapshots => {
         resolve(snapshots);
@@ -112,7 +112,7 @@ export class RsvpService {
   searchRSVPEmail(searchValue){
     return new Promise<any>((resolve, reject) => {
       this.db.collection('Rsvps', ref => ref.where('SearchEmail', '>=', searchValue)
-      .where('SearchEmail', '<=', searchValue + '\uf8ff'))
+      .where('SearchEmail', '<=', searchValue + '\uf8ff').orderBy('SearchName'))
       .snapshotChanges()
       .subscribe(snapshots => {
         resolve(snapshots);
@@ -123,7 +123,7 @@ export class RsvpService {
   searchRSVPCode(searchValue){
     return new Promise<any>((resolve, reject) => {
       this.db.collection('Rsvps', ref => ref.where('SearchRSVPCode', '>=', searchValue)
-      .where('SearchRSVPCode', '<=', searchValue + '\uf8ff'))
+      .where('SearchRSVPCode', '<=', searchValue + '\uf8ff').orderBy('SearchName'))
       .snapshotChanges()
       .subscribe(snapshots => {
         resolve(snapshots);
@@ -134,7 +134,7 @@ export class RsvpService {
   searchRSVPAttendance(searchValue){
     return new Promise<any>((resolve, reject) => {
       this.db.collection('Rsvps', ref => ref.where('AttendingOption', '>=', searchValue)
-      .where('AttendingOption', '<=', searchValue + '\uf8ff'))
+      .where('AttendingOption', '<=', searchValue + '\uf8ff').orderBy('SearchName'))
       .snapshotChanges()
       .subscribe(snapshots => {
         resolve(snapshots);
