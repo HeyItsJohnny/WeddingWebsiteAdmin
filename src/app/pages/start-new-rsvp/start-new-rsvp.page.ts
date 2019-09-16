@@ -114,7 +114,8 @@ export class StartNewRsvpPage implements OnInit {
   }
 
   getRSVPrecord() {
-    var rservice = this.rsvpService.getRsvpCodeFromSearch(this.findRsvp.RSVPCode).subscribe(res => {
+    var tmpRSVPCode = this.findRsvp.RSVPCode.toLowerCase();
+    var rservice = this.rsvpService.getRsvpCodeFromSearch(tmpRSVPCode).subscribe(res => {
       if (res.length == 0) {
         this.presentAlert("Error","RSVP was not found. Please try another email.");
       } else {
