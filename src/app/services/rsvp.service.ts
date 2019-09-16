@@ -35,7 +35,7 @@ export class RsvpService {
   getRsvps() {
 
     return new Promise<any>((resolve, reject) => {
-      this.db.collection('Rsvps').snapshotChanges()
+      this.db.collection('Rsvps', ref => ref.orderBy("SearchName")).snapshotChanges()
       .subscribe(snapshots => {
         resolve(snapshots)
       })
