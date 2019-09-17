@@ -29,6 +29,11 @@ export class AppComponent {
       title: 'New RSVP',
       url: '/start-new-rsvp',
       icon: 'list'
+    },
+    {
+      title: 'Login',
+      url: '/login',
+      icon: 'list'
     }
   ];
 
