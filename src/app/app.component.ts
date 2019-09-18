@@ -30,11 +30,11 @@ export class AppComponent {
       url: '/start-new-rsvp',
       icon: 'list'
     },
-    {
+    /*{
       title: 'Login',
       url: '/login',
       icon: 'list'
-    }
+    }*/
   ];
 
   constructor(
