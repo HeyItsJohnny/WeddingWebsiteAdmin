@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
 
 export class User {
     email: string;
@@ -18,8 +18,7 @@ export class LoginPage implements OnInit {
   public user:User = new User();
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams,
+    private router: Router,
     public fAuth: AngularFireAuth){
   }
 
@@ -34,7 +33,7 @@ export class LoginPage implements OnInit {
       );
       if (r) {
         console.log("Successfully logged in!");
-        this.navCtrl.setRoot('/admin-home/');
+        this.router.navigateByUrl('/admin-home/');
       }
 
     } catch (err) {
