@@ -16,9 +16,9 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/login', function(req, res){
+/*app.get('/login', function(req, res){
   res.redirect('https://weddingapp-jcl-admin.herokuapp.com/login');
-});
+});*/
  
 app.use(express.static('www'));
 app.set('port', process.env.PORT || 5000);
