@@ -49,6 +49,22 @@ export class RsvpListPage {
     this.rsvps = this.loadedRsvps;
   }
 
+  onSearchChange(data) {
+    if (this.searchCategory == 'noresponse') {
+      this.rsvpService.searchRSVPAttendance("").then(res => {
+        this.rsvps = res;
+      })
+    } else if (this.searchCategory == 'attending') {
+      this.rsvpService.searchRSVPAttendance("Attending").then(res => {
+        this.rsvps = res;
+      })
+    } else if (this.searchCategory == 'notattending') {
+      this.rsvpService.searchRSVPAttendance("Not Attending").then(res => {
+        this.rsvps = res;
+      })
+    }
+  }
+
   getItems(searchbar) {
     if (searchbar.srcElement.value == "") {
       this.getRsvpData();
@@ -69,20 +85,7 @@ export class RsvpListPage {
         this.rsvpService.searchRSVPCode(valueTmp).then(res => {
           this.rsvps = res;
         })
-      } else if (this.searchCategory == 'noresponse') {
-        this.rsvpService.searchRSVPAttendance("").then(res => {
-          this.rsvps = res;
-        })
-      } else if (this.searchCategory == 'attending') {
-        this.rsvpService.searchRSVPAttendance("Attending").then(res => {
-          this.rsvps = res;
-        })
-      } else if (this.searchCategory == 'notattending') {
-        this.rsvpService.searchRSVPAttendance("Not Attending").then(res => {
-          this.rsvps = res;
-        })
-      }
-      
+      } 
     }
   }
 
