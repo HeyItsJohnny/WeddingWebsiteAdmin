@@ -20,6 +20,8 @@ export interface Rsvp {
   AddressPostCode: string;
   NumberOfGuests: number;
   AttendingOption: string;
+  SentOutInvite: string;
+  HasAddress: string;
 }
 
 @Injectable({

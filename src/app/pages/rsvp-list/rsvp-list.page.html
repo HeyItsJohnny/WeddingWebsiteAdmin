@@ -35,6 +35,12 @@
         <ion-label>
           {{ item.payload.doc.data().RSVPCode }}
         </ion-label>
+        <ion-label>
+          (Has Address: {{ item.payload.doc.data().Address2 }})
+        </ion-label>
+        <ion-label>
+          (Invite Sent: {{ item.payload.doc.data().SentOutInvite }})
+        </ion-label>
       </ion-item> 
     </ion-item-sliding>
   </ion-list>

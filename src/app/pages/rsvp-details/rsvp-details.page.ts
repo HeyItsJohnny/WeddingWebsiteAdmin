@@ -26,7 +26,9 @@ export class RsvpDetailsPage implements OnInit {
     AddressState: '',
     AddressPostCode: '',
     NumberOfGuests: 0,
-    AttendingOption: ''
+    AttendingOption: '',
+    SentOutInvite: '',
+    HasAddress: ''
   };
 
   rsvpId = null;
