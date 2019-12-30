@@ -36,7 +36,10 @@
           {{ item.payload.doc.data().RSVPCode }}
         </ion-label>
         <ion-label>
-          (Has Address: {{ item.payload.doc.data().Address2 }})
+          (Guests: {{ item.payload.doc.data().NumberOfGuests }})
+        </ion-label>
+        <ion-label>
+          (Has Address: {{ item.payload.doc.data().HasAddress }})
         </ion-label>
         <ion-label>
           (Invite Sent: {{ item.payload.doc.data().SentOutInvite }})
