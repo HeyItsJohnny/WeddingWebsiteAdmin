@@ -26,13 +26,16 @@ export class WeddingGuestsPage {
     getRsvpData() {
       this.rsvpService.getRsvps().then(data => {
         this.rsvps = data;
+
+        for(let item of this.rsvps) {
+          console.log('ID: ' + item.payload.doc.id + ' Name: ' + item.payload.doc.data().Name); 
+        }
+        
       });
     }
 
     getRsvpGuests() {
-      for(let item of this.rsvps) {
-        console.log('ID: ' + item.payload.doc.id + ' Name: ' + item.payload.doc.data().Name); 
-      }
+      
     }
 
 }
