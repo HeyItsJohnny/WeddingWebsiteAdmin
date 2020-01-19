@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'admin-home', loadChildren: './pages/admin-home/admin-home.module#AdminHomePageModule' },
   { path: 'rsvp-diet-restrictions', loadChildren: './pages/rsvp-diet-restrictions/rsvp-diet-restrictions.module#RsvpDietRestrictionsPageModule' },
   { path: 'rsvp-diet-restrictions/:id', loadChildren: './pages/rsvp-diet-restrictions/rsvp-diet-restrictions.module#RsvpDietRestrictionsPageModule' },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
+  { path: 'wedding-guests', loadChildren: './pages/wedding-guests/wedding-guests.module#WeddingGuestsPageModule' }
 ];
 
 @NgModule({

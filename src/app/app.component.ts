@@ -31,9 +31,9 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Login',
-      url: '/login',
-      icon: 'list'
+      title: 'Wedding Guests',
+      url: '/wedding-guests',
+      icon: 'body'
     }
   ];
 
