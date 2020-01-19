@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RsvpGuest, RsvpGuestService } from 'src/app/services/rsvp-guest.service';
 import { Rsvp, RsvpService } from 'src/app/services/rsvp.service';
-
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'app-wedding-guests',
@@ -15,7 +15,8 @@ export class WeddingGuestsPage {
 
   constructor(
     private rsvpGuestService: RsvpGuestService,
-    private rsvpService: RsvpService) { }
+    private rsvpService: RsvpService,
+    public events: Events) { }
 
  
     ionViewWillEnter() {
@@ -29,6 +30,13 @@ export class WeddingGuestsPage {
         for(let item of this.rsvps) {
           if (item.payload.doc.data().AttendingOption == 'Attending') {
             console.log('ID: ' + item.payload.doc.id + ' Name: ' + item.payload.doc.data().Name); 
+            this.events.publish('guest:created', item.payload.doc.id);  
+            this.rsvpGuestService.getRsvpGuests().then(data => {
+              this.rsvpGuests = data;
+              for(let gu of this.rsvpGuests) {
+                console.log('GUEST ID: ' + gu.payload.doc.id + ' GUEST NAME: ' + item.payload.doc.data().Name + ' DIET: ' + item.payload.doc.data().DietaryRestrictions);
+              }
+            });
           }
         }
 
