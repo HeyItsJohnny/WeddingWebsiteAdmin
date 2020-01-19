@@ -34,7 +34,7 @@ export class WeddingGuestsPage {
             this.rsvpGuestService.getRsvpGuests().then(data => {
               this.rsvpGuests = data;
               for(let gu of this.rsvpGuests) {
-                console.log('GUEST ID: ' + gu.payload.doc.id + ' GUEST NAME: ' + item.payload.doc.data().Name + ' DIET: ' + item.payload.doc.data().DietaryRestrictions);
+                console.log('GUEST ID: ' + gu.payload.doc.id + ' GUEST NAME: ' + gu.payload.doc.data().Name + ' DIET: ' + gu.payload.doc.data().DietaryRestrictions);
               }
             });
           }
