@@ -19,23 +19,19 @@ export class WeddingGuestsPage {
 
  
     ionViewWillEnter() {
-      this.getRsvpData();
-      this.getRsvpGuests();
+      this.getData();
     }
 
-    getRsvpData() {
+    getData() {
       this.rsvpService.getRsvps().then(data => {
         this.rsvps = data;
 
         for(let item of this.rsvps) {
-          console.log('ID: ' + item.payload.doc.id + ' Name: ' + item.payload.doc.data().Name); 
+          if (item.payload.doc.data().AttendingOption == 'Attending') {
+            console.log('ID: ' + item.payload.doc.id + ' Name: ' + item.payload.doc.data().Name); 
+          }
         }
-        
+
       });
     }
-
-    getRsvpGuests() {
-      
-    }
-
 }
