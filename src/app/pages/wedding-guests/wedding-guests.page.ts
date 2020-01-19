@@ -34,6 +34,7 @@ export class WeddingGuestsPage {
             this.rsvpGuestService.getRsvpGuests().then(data => {
               this.rsvpGuests = data;
               for(let gu of this.rsvpGuests) {
+                this.guests.push(gu);
                 console.log('GUEST ID: ' + gu.payload.doc.id + ' GUEST NAME: ' + gu.payload.doc.data().Name + ' DIET: ' + gu.payload.doc.data().DietaryRestrictions);
               }
             });
@@ -41,5 +42,9 @@ export class WeddingGuestsPage {
         }
 
       });
+    }
+
+    viewDetails(item) {
+      console.log("DO NOTHING..");
     }
 }
