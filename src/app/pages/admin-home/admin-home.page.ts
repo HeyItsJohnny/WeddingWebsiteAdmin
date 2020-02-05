@@ -36,6 +36,7 @@ export class AdminHomePage {
   TotalInvited: string;
   TotalAttending: string;
   TotalNotAttending: string;
+  TotalNotResponded: string;
 
   constructor(
     private weddingDayDetailsService: WeddingDayDetailsService,
@@ -62,8 +63,12 @@ export class AdminHomePage {
     guestData.addColumn('number', 'Number of Attendance');  
 
     this.rsvpService.getAllInvited().then(result => {
+      var NotResponded = 0;
       this.TotalInvited = "Total Invited: " + result.TotalInvited;
-      guestData.addRow(["Invited",result.TotalInvited]);
+      NotResponded = result.TotalInvited - Attending - NotAttending;
+      this.TotalNotResponded = "Total Not Responded: " + NotResponded;
+      //guestData.addRow(["Invited",result.TotalInvited]);
+      guestData.addRow(["Not Responded",NotResponded]);
       chart.draw(guestData, options);
     });
 
@@ -72,6 +77,7 @@ export class AdminHomePage {
 
     this.TotalAttending = "Total Attending: " + Attending;
     this.TotalNotAttending = "Total Not Attending: " + NotAttending;
+    
 
     var options = {
       title: 'Wedding Attendance'
