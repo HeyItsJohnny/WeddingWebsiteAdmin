@@ -77,7 +77,6 @@ export class AdminHomePage {
 
     this.TotalAttending = "Total Attending: " + Attending;
     this.TotalNotAttending = "Total Not Attending: " + NotAttending;
-    
 
     var options = {
       title: 'Wedding Attendance'

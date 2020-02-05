@@ -11,7 +11,7 @@ import { Events } from 'ionic-angular';
 export class WeddingGuestsPage {
   public rsvps: Array<any>;
   public rsvpGuests: Array<any>;
-  public guests: Array<any>;
+  public guests = [];
 
   constructor(
     private rsvpGuestService: RsvpGuestService,
